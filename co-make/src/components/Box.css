@@ -28,3 +28,7 @@ button {
     border: none;
     border-radius: 10px;;
 }
+
+.box {
+    min-height: 260px;
+}
