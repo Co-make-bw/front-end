@@ -11,14 +11,14 @@ function Default() {
     const [loginBox, setLoginBox] = useState(true);
     const [registerBox, setRegisterBox] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userLoginData, setUserLoginDate] = useState({});
+    const [userLoginData, setUserLoginData] = useState({});
 
     function getData() {
 
         axios
         .get('https://cors-anywhere.herokuapp.com/https://eddiemadrigal.net/users/users.json')
         .then(response => {
-            console.log("Original Data: ", response.data);
+            // console.log("Original Data: ", response.data);
             const myData = [];
             response.data.map(({username, password, email }) => {
                 myData.push({ 
@@ -31,8 +31,10 @@ function Default() {
 
             let myFilter = "email";
             const results = myData.filter( function(user) {
+
+                console.log("filter info: ", userLoginData)
+
                 if (user[myFilter] === userLoginData.email && user["password"] === userLoginData.password) {
-                    
                     return user[myFilter] === userLoginData.email;
                 } else {
                     setIsLoggedIn(false);
@@ -90,7 +92,7 @@ function Default() {
                     { loginBox && 
                     <LoginBox
                     processData = { getData }
-                    loginData = { setUserLoginDate }
+                    loginData = { setUserLoginData }
                     shLogin = { showLogin }/> }
 
                     { registerBox && 
