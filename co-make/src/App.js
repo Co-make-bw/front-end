@@ -1,13 +1,14 @@
 import React from 'react';
+import Nav from './components/Navbar';
+import Default from './components/Default';
 
 function App() {
-	return (
-		<div>
-			<h1>co make</h1>
-			{/* Add in public Routes for Onboarding */}
-			{/* Add in PrivateRoute for Dashboard */}
-		</div>
-	);
+  return (
+    <div>
+      <Nav />
+      <Default />
+    </div>
+  );
 }
 
 export default App;
