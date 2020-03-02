@@ -11,14 +11,16 @@ function Default() {
     const [loginBox, setLoginBox] = useState(true);
     const [registerBox, setRegisterBox] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userLoginData, setUserLoginData] = useState({});
+    const [userLoginData, setUserLoginData] = 
+        useState({username: "edmadrigal@yahoo.com", password: "password"});
 
-    function getData() {
+    
+
+    function getData(loginData) {
 
         axios
         .get('https://cors-anywhere.herokuapp.com/https://eddiemadrigal.net/users/users.json')
         .then(response => {
-            // console.log("Original Data: ", response.data);
             const myData = [];
             response.data.map(({username, password, email }) => {
                 myData.push({ 
@@ -26,31 +28,35 @@ function Default() {
                     password: `${password}`,
                     email: `${email}` });
             });
-            
-            console.log("My Data: ", myData);
 
-            let myFilter = "email";
             const results = myData.filter( function(user) {
 
-                console.log("filter info: ", userLoginData)
+                return (user["email"] === loginData.email && user["password"] === loginData.password)
 
-                if (user[myFilter] === userLoginData.email && user["password"] === userLoginData.password) {
-                    return user[myFilter] === userLoginData.email;
-                } else {
-                    setIsLoggedIn(false);
-                    return "No user found";
-                }
+                // if (user["email"] === loginData.email) {
+                //     console.log("user found");
+                //     return user["email"] === loginData.email;
+                // } else {
+                //     console.log("no user found");
+                //     setIsLoggedIn(false);
+                //     return "No user found";
+                // }
+
+                // console.log(user["email"]);
+                // console.log(loginData.email);
+                // console.log(user["password"]);
+                // console.log(loginData.password);
                 
             });
 
-            if (results[0].email === userLoginData.email && results[0].password === userLoginData.password) {
+            if (results) {
+                console.log("user found");
                 setIsLoggedIn(true);
             } else {
+                console.log("no user found");
                 setIsLoggedIn(false)
             }
 
-            
-            
         })
         .catch(error => {
             console.log('Error: ', error)

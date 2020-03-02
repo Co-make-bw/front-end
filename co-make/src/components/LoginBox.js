@@ -26,10 +26,9 @@ function LoginBox(props) {
                     }}
                         onSubmit={(values, {setSubmitting}) => {
                         setTimeout(() => {
-                            let submitValues = JSON.stringify(values, null, 2);
+                            let submitValues = values;
                             props.loginData(submitValues);
-                            console.log(submitValues);
-                            props.processData();
+                            props.processData(submitValues);
                             setSubmitting(true);
                         }, 400);
                     }}>
