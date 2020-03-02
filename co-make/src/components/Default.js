@@ -32,21 +32,7 @@ function Default() {
             const results = myData.filter( function(user) {
 
                 return (user["email"] === loginData.email && user["password"] === loginData.password)
-
-                // if (user["email"] === loginData.email) {
-                //     console.log("user found");
-                //     return user["email"] === loginData.email;
-                // } else {
-                //     console.log("no user found");
-                //     setIsLoggedIn(false);
-                //     return "No user found";
-                // }
-
-                // console.log(user["email"]);
-                // console.log(loginData.email);
-                // console.log(user["password"]);
-                // console.log(loginData.password);
-                
+            
             });
 
             if (results) {
