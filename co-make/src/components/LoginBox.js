@@ -29,6 +29,7 @@ function LoginBox(props) {
                             let submitValues = JSON.stringify(values, null, 2);
                             props.loginData(submitValues);
                             console.log(submitValues);
+                            props.processData();
                             setSubmitting(true);
                         }, 400);
                     }}>
