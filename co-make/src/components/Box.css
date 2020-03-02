@@ -3,3 +3,28 @@ Form#loginForm {
     display: flex;
     flex-direction: column;
 }
+
+label {
+    text-align: left;
+    line-height: 16px;
+}
+
+input {
+    margin-bottom: 12px;
+}
+
+div.tos {
+    line-height: 14px;
+}
+
+.star {
+    color: red;
+}
+
+button {
+    background: #4B99AD;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;;
+}

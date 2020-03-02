@@ -34,9 +34,11 @@ function LoginBox(props) {
                     }}>
                         {({isSubmitting}) => (
                             <Form id="loginForm">
-                                <Field type="email" name="email" autoComplete="off" placeholder="Email"/>
+                                <label htmlFor="email">Email</label>
+                                <Field type="email" name="email" autoComplete="off"/>
                                 <ErrorMessage name="email" component="div"/>
-                                <Field type="password" name="password" placeholder="Password"/>
+                                <label htmlFor="password">Password</label>
+                                <Field type="password" name="password"/>
                                 <ErrorMessage name="password" component="div"/>
                                 <button type="submit" disabled={isSubmitting}>
                                     Submit
