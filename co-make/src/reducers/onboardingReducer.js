@@ -1,12 +1,6 @@
 const initialState = {
-	credentials: {
-		username: '',
-		password: ''
-	},
-	newUser: {
-		username: '',
-		password: ''
-	}
+	loginError: false,
+	signupError: false
 };
 
 export const onboardingReducer = (state = initialState, action) => {
