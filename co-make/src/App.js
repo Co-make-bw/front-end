@@ -9,8 +9,9 @@ function App() {
     <div>
       <Nav />
       <Default />
-      <LocalIssues/>
-      <UserIssues/>
+      {/* uncomment to see the cards as they are currently rendering */}
+      {/* <LocalIssues/>
+      <UserIssues/> */}
     </div>
   );
 }
