@@ -25,12 +25,12 @@ function LoginBox(props) {
 							return errors;
 						}}
 						onSubmit={(values, { setSubmitting }) => {
-							setTimeout(() => {
-								let submitValues = values;
-								setSubmitting(true);
-								props.loginUser(submitValues);
-								history.push('/dashboard');
-							}, 400);
+							// setTimeout(() => {
+							// 	setSubmitting(true);
+							// }, 400);
+							let submitValues = values;
+							props.loginUser(submitValues);
+							history.push(`/dashboard/${submitValues.username}`);
 						}}
 					>
 						{({ isSubmitting }) => (

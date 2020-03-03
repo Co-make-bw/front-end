@@ -11,7 +11,7 @@ function App() {
 		<div>
 			<Nav />
 			<Route exact path='/' component={Default} />
-			<PrivateRoute path='/dashboard' component={Dashboard} />
+			<PrivateRoute path='/dashboard/:username' component={Dashboard} />
 		</div>
 	);
 }
