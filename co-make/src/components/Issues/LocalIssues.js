@@ -6,7 +6,7 @@ const issues = [
         title: "No complaints",
         description: "I just came here to just say that the fried chicken at the Puritan Backroom is delicious!",
         location: "Manchester",
-        upvoted: 0,
+        upvotes: 0,
         created_at: "2020-03-03T15:42:35.153Z",
         updated_at: "2020-03-03T15:42:35.153Z",
         user_id: 3,
