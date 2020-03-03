@@ -1,4 +1,4 @@
-import { GET_USER } from '../actions/dashboardActions';
+import { GET_USER, ADD_STATE } from '../actions/dashboardActions';
 
 const initialState = {
 	user: {
@@ -23,7 +23,13 @@ export const dashboardReducer = (state = initialState, action) => {
 					points: action.payload.points
 				}
 			};
-
+		case ADD_STATE:
+			return {
+				user: {
+					...state.user,
+					locations: action.payload
+				}
+			};
 		default:
 			return state;
 	}
