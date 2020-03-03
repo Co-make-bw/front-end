@@ -25,3 +25,19 @@
 .selected {
     border-bottom: 2px solid #ccc;
 }
+
+.card-layout {
+    display: flex;
+}
+
+.card-container {
+    width: 30%;
+    margin: 5% auto;
+    border: 1px solid gray;
+    border-radius: 7px;
+    /* display: flex; */
+}
+
+.card {
+    padding: 5%;
+}
