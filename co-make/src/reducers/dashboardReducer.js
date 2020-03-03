@@ -1,4 +1,4 @@
-import { GET_USER, ADD_STATE } from '../actions/dashboardActions';
+import { GET_USER, ADD_STATE, GET_STATES } from '../actions/dashboardActions';
 
 const initialState = {
 	user: {
@@ -13,7 +13,6 @@ const initialState = {
 export const dashboardReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_USER:
-			console.log('getuser', action.payload);
 			return {
 				user: {
 					...state.user,
@@ -21,6 +20,13 @@ export const dashboardReducer = (state = initialState, action) => {
 					username: action.payload.username,
 					about: action.payload.about,
 					points: action.payload.points
+				}
+			};
+		case GET_STATES:
+			return {
+				user: {
+					...state.user,
+					locations: action.payload
 				}
 			};
 		case ADD_STATE:

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addState } from '../../actions/dashboardActions';
+import { addState, getStates } from '../../actions/dashboardActions';
 
 const Locations = props => {
 	const [editing, setEditing] = useState(false);
 	const [stateValue, setStateValue] = useState({ value: '' });
 
+	// FORM CONTROLS
 	const editStates = () => {
-		setEditing(true);
+		setEditing(!editing);
 	};
 	const handleChange = e => {
 		setStateValue({
@@ -28,8 +29,10 @@ const Locations = props => {
 		});
 		const stateID = { state_id: tempID };
 		props.addState(stateID, userID);
+		setEditing(false);
 	};
 
+	// LOCATIONS INFO
 	const usStates = [
 		'Alabama',
 		'Alaska',
@@ -81,11 +84,19 @@ const Locations = props => {
 		'Wisconsin',
 		'Wyoming'
 	];
+	useEffect(() => {
+		setTimeout(function() {
+			const userID = props.user.id;
+			console.log('user id', userID);
+			props.getStates(userID);
+		}, 2000);
+	}, [props.user.locations]);
 
+	// IF NO LOCATIONS, DISPLAY FORM
 	if (props.user.locations.length === 0) {
 		return (
 			<div>
-				<p>Add your states you belong to and get started!</p>
+				<p>Add the states you care about and get started!</p>
 				{!editing && <button onClick={editStates}>Add States</button>}
 				{editing && (
 					<form onSubmit={handleSubmit}>
@@ -97,12 +108,14 @@ const Locations = props => {
 							))}
 						</select>
 						<button type='submit'>Add State</button>
+						<button onClick={editStates}>Cancel</button>
 					</form>
 				)}
 			</div>
 		);
 	}
 
+	// IF THERE ARE LOCATIONS, SHOW LOCATIONS AND FORM
 	return (
 		<div>
 			<p>Your States:</p>
@@ -122,14 +135,30 @@ const Locations = props => {
 					</li>
 				))}
 			</ul>
+			<p>Add more States</p>
+			{!editing && <button onClick={editStates}>Add States</button>}
+			{editing && (
+				<form onSubmit={handleSubmit}>
+					<select value={stateValue.value} onChange={handleChange}>
+						{usStates.map((item, index) => (
+							<option key={index} name={index + 1} value={item}>
+								{item}
+							</option>
+						))}
+					</select>
+					<button type='submit'>Add State</button>
+					<button onClick={editStates}>Cancel</button>
+				</form>
+			)}
 		</div>
 	);
 };
 
 const mapStateToProps = state => {
+	console.log('state in locations fired');
 	return {
 		user: state.dashboardReducer.user
 	};
 };
 
-export default connect(mapStateToProps, { addState })(Locations);
+export default connect(mapStateToProps, { addState, getStates })(Locations);

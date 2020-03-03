@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import LoginBox from './LoginBox';
 import Register from './Register';
 import LoggedInState from './LoggedInState';
