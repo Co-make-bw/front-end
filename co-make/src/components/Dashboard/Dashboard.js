@@ -9,6 +9,7 @@ import DashboardIssues from './DashboardIssues';
 const Dashboard = () => {
 	return (
 		<div>
+			<h2>Dashboard Info ...</h2>
 			<Navbar />
 			<Profile />
 			<Locations />

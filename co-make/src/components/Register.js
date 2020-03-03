@@ -29,25 +29,23 @@ function Register(props) {
                     }}
                         onSubmit={(values, {setSubmitting}) => {
                         setTimeout(() => {
-                            let submitValues = values;
-                            props.loginData(submitValues);
-                            props.processData(submitValues);
+                            console.log(values);
                             setSubmitting(true);
                         }, 400);
                     }}>
-                        {({isSubmitting}) => (
+                        {({ values, handleChange, isSubmitting}) => (
                             <Form id="loginForm">
                                 <label htmlFor="username">Username<span className="star">*</span></label>
-                                <Field type="text" name="username"/>
+                                <Field type="text" name="username" autoComplete="off" onChange = {handleChange} />
                                 <ErrorMessage name="username" component="div"/>
                                 <label htmlFor="email">Email<span className="star">*</span></label>
                                 <Field type="email" name="email" autoComplete="off"/>
                                 <ErrorMessage name="email" component="div"/>
                                 <label htmlFor="password">Password<span className="star">*</span></label>
-                                <Field type="password" name="password"/>
+                                <Field type="password" name="password" autoComplete="off"/>
                                 <ErrorMessage name="password" component="div"/>
                                 <label htmlFor="password2">Confirm Password<span className="star">*</span></label>
-                                <Field type="password" name="password2"/>
+                                <Field type="password" name="password2" autoComplete="off"/>
                                 <ErrorMessage name="password2" component="div"/>
                                 <div className="tos">
                                     <Field type="checkbox" name="tos"/>
@@ -57,9 +55,12 @@ function Register(props) {
                                 <button type="submit" disabled={isSubmitting}>
                                     Submit
                                 </button>
+                                <pre>{JSON.stringify(values, null, 2)}</pre>
                             </Form>
+                            
                         )}
                     </Formik>
+                        
                 </div>
 
             </div>

@@ -11,10 +11,6 @@ function Default() {
     const [loginBox, setLoginBox] = useState(true);
     const [registerBox, setRegisterBox] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userLoginData, setUserLoginData] = 
-        useState({username: "edmadrigal@yahoo.com", password: "password"});
-
-    
 
     function getData(loginData) {
 
@@ -84,7 +80,6 @@ function Default() {
                     { loginBox && 
                     <LoginBox
                     processData = { getData }
-                    loginData = { setUserLoginData }
                     shLogin = { showLogin }/> }
 
                     { registerBox && 
