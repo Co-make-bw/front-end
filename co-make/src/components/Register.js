@@ -40,13 +40,13 @@ function Register(props) {
                             errors.password = '6 or more characters is required';
                         } else if (values.password.length > 15) {
                             errors.password = 'Too long';
-                        } else if (values.password.search(/\d/) == -1) {
+                        } else if (values.password.search(/\d/) === -1) {
                             errors.password = 'You must include a number';
-                        } else if (values.password.search(/[A-Z]/) == -1) {
+                        } else if (values.password.search(/[A-Z]/) === -1) {
                             errors.password = 'You must include an upper case letter';
-                        } else if (values.password.search(/[a-z]/) == -1) {
+                        } else if (values.password.search(/[a-z]/) === -1) {
                             errors.password = 'You must include an lower case letter';
-                        } else if (values.password.search(/[\!\@\#\$]/) == -1) {
+                        } else if (values.password.search(/[!@#$]/) === -1) {
                             errors.password = 'You must use at least one special character: ! @ # $';
                         }
 

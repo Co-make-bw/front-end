@@ -16,7 +16,11 @@ function Navbar() {
                 
             </div>
         </Router>
+        
     );
 }
+
+
+
 
 export default Navbar;
