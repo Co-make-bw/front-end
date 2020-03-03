@@ -16,17 +16,3 @@ export const addNewUser = newUserCredentials => dispatch => {
 			dispatch({ type: REGISTER_ERROR });
 		});
 };
-
-export const loginUser = credentials => dispatch => {
-	axios
-		.post('https://comake4.herokuapp.com/api/auth/login', credentials)
-		.then(res => {
-			console.log('response for login:', res);
-			window.localStorage.setItem('token', res.data.token);
-			dispatch({ type: RESET_ERROR });
-		})
-		.catch(err => {
-			console.log('error from user login post', err);
-			dispatch({ type: LOGIN_ERROR });
-		});
-};

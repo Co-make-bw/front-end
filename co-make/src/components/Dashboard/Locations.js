@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addState, getStates } from '../../actions/dashboardActions';
+import { addState } from '../../actions/dashboardActions';
 
 const Locations = props => {
 	const [editing, setEditing] = useState(false);
@@ -84,13 +85,12 @@ const Locations = props => {
 		'Wisconsin',
 		'Wyoming'
 	];
-	useEffect(() => {
-		setTimeout(function() {
-			const userID = props.user.id;
-			console.log('user id', userID);
-			props.getStates(userID);
-		}, 2000);
-	}, [props.user.locations]);
+
+	// ROUTING
+	const history = useHistory();
+	const toStateIssues = routeID => {
+		history.push(`/issues/${routeID}`);
+	};
 
 	// IF NO LOCATIONS, DISPLAY FORM
 	if (props.user.locations.length === 0) {
@@ -122,7 +122,7 @@ const Locations = props => {
 			<ul>
 				{props.user.locations.map(location => (
 					<li key={location.state_id}>
-						<span>
+						<span onClick={() => toStateIssues(location.state_id)}>
 							<span
 								onClick={e => {
 									e.stopPropagation();
@@ -161,4 +161,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { addState, getStates })(Locations);
+export default connect(mapStateToProps, { addState })(Locations);

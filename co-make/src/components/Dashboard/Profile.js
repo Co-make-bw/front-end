@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import { getUser } from '../../actions/dashboardActions';
 
 const Profile = props => {
-	const { username } = useParams();
+	const { id } = useParams();
 
 	useEffect(() => {
-		props.getUser(username);
-	}, [username]);
+		props.getUser(id);
+	}, []);
 
 	if (!props.user) {
 		return <p>There's no user</p>;
