@@ -71,7 +71,7 @@ function Register(props) {
                         {({ values, handleChange, isSubmitting}) => (
                             <Form id="loginForm">
                                 <label htmlFor="username">Username<span className="star">*</span></label>
-                                <Field type="text" name="username" autoComplete="off" onChange = {handleChange} />
+                                <Field autoFocus type="text" name="username" autoComplete="off" onChange = {handleChange} />
                                 <ErrorMessage name="username" component="div"/>
                                 <label htmlFor="email">Email<span className="star">*</span></label>
                                 <Field type="email" name="email" autoComplete="off"/>

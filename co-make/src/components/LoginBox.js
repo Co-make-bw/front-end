@@ -12,15 +12,13 @@ function LoginBox(props) {
                 <div className="input-group">
                     <Formik
                         initialValues={{
-                        email: '',
+                        username: '',
                         password: ''
                     }}
                         validate={values => {
                         const errors = {};
-                        if (!values.email) {
+                        if (!values.username) {
                             errors.email = 'Required';
-                        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                            errors.email = 'Invalid email address';
                         }
                         return errors;
                     }}
@@ -33,9 +31,9 @@ function LoginBox(props) {
                     }}>
                         {({isSubmitting}) => (
                             <Form id="loginForm">
-                                <label htmlFor="email">Email</label>
-                                <Field type="email" name="email" autoComplete="off"/>
-                                <ErrorMessage name="email" component="div"/>
+                                <label htmlFor="username">Username</label>
+                                <Field type="text" name="username" autoFocus autoComplete="off"/>
+                                <ErrorMessage name="username" component="div"/>
                                 <label htmlFor="password">Password</label>
                                 <Field type="password" name="password"/>
                                 <ErrorMessage name="password" component="div"/>
