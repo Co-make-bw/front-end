@@ -25,3 +25,8 @@
 .selected {
     border-bottom: 2px solid #ccc;
 }
+
+#tagline {
+    margin-top: -20px;
+    margin-bottom: 50px;
+}

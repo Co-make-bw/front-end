@@ -75,7 +75,7 @@ function Default() {
                 <span id="sp4">Vision.</span> 
                 <span id="sp5">Clarity.</span>
             </h3>
-            <div style={{marginBottom: 30 }}><LoggedInState loggedInStatus={isLoggedIn} /></div>
+            
             <div className="box-controller">
                 <div className="controller">
                     <div 
@@ -105,6 +105,7 @@ function Default() {
                     
                 </div>
             </div>
+            <div style={{marginBottom: 30 }}><LoggedInState loggedInStatus={isLoggedIn} /></div>
         </div>
     )
     
