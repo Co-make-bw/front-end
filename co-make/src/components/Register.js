@@ -1,55 +1,64 @@
-import React from "react";
-import "./Box.css";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addNewUser } from '../actions/onboardingActions';
+import './Box.css';
 
 function Register(props) {
+	const [newUser, setNewUser] = useState({
+		username: '',
+		password: ''
+	});
+	const history = useHistory();
 
-    return (
-        <div className="inner-container">
-            
-            <div className="box">
+	const handleChange = e => {
+		setNewUser({
+			...newUser,
+			[e.target.name]: e.target.value
+		});
+	};
 
-                <div className="input-group">
-                    <label htmlFor="username">User Name</label>
+	const handleSubmit = e => {
+		e.preventDefault();
+		const user = newUser;
+		props.addNewUser(user);
+		history.push('/');
+	};
 
-                    <input 
-                    type="text" 
-                    name="username" 
-                    placeholder="User Name" 
-                    autoComplete="off" 
-                    onChange = { props.nameChange } 
-                    />
+	return (
+		<div className='inner-container'>
+			<div className='box'>
+				<div className='input-group'>
+					<label htmlFor='username'>User Name</label>
 
-                    <label htmlFor="password">Password</label>
-                    <input 
-                    type="password" 
-                    name="Password" 
-                    onChange = { props.passwordChange } 
-                    />
-                    
-                    <label htmlFor="email">Email</label>
-                    <input 
-                    type="email" 
-                    name="email" 
-                    onChange = { props.emailChange } 
-                    />
-                    
-                    <div>
-                        <input
-                        type="checkbox"
-                        name="tos"
-                        onChange = {props.shTos}
-                        />
-                        <label htmlFor="tos">Accept Terms of Service</label>
-                    </div>
+					<input
+						type='text'
+						name='username'
+						placeholder='User Name'
+						autoComplete='off'
+						onChange={handleChange}
+						value={newUser.username}
+					/>
 
-                    <button onClick={props.subRegistration} name="submitRegister">Register</button>
-                </div>
+					<label htmlFor='password'>Password</label>
+					<input type='password' name='password' onChange={handleChange} />
 
-            </div>
-
-        </div>
-    )
-
+					<button onClick={handleSubmit} name='submitRegister'>
+						Register
+					</button>
+				</div>
+				{props.registerError && (
+					<p>User already exists, try a different username</p>
+				)}
+			</div>
+		</div>
+	);
 }
 
-export default Register;
+const mapStateToProps = state => {
+	return {
+		registerError: state.registerError
+	};
+};
+
+export default connect(mapStateToProps, { addNewUser })(Register);

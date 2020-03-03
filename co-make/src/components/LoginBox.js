@@ -1,56 +1,59 @@
-import React from "react";
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import "./Box.css";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/onboardingActions';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import './Box.css';
 
 function LoginBox(props) {
+	const history = useHistory();
 
-    return (
-        <div className="inner-container">
-
-            <div className="box">
-
-                <div className="input-group">
-                    <Formik
-                        initialValues={{
-                        email: '',
-                        password: ''
-                    }}
-                        validate={values => {
-                        const errors = {};
-                        if (!values.email) {
-                            errors.email = 'Required';
-                        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                            errors.email = 'Invalid email address';
-                        }
-                        return errors;
-                    }}
-                        onSubmit={(values, {setSubmitting}) => {
-                        setTimeout(() => {
-                            let submitValues = values;
-                            props.loginData(submitValues);
-                            props.processData(submitValues);
-                            setSubmitting(true);
-                        }, 400);
-                    }}>
-                        {({isSubmitting}) => (
-                            <Form id="loginForm">
-                                <Field type="email" name="email" autoComplete="off" placeholder="Email"/>
-                                <ErrorMessage name="email" component="div"/>
-                                <Field type="password" name="password" placeholder="Password"/>
-                                <ErrorMessage name="password" component="div"/>
-                                <button type="submit" disabled={isSubmitting}>
-                                    Submit
-                                </button>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
-
-            </div>
-
-        </div>
-    )
-
+	return (
+		<div className='inner-container'>
+			<div className='box'>
+				<div className='input-group'>
+					<Formik
+						initialValues={{
+							username: '',
+							password: ''
+						}}
+						validate={values => {
+							const errors = {};
+							if (!values.username) {
+								errors.username = 'Required';
+							}
+							return errors;
+						}}
+						onSubmit={(values, { setSubmitting }) => {
+							setTimeout(() => {
+								let submitValues = values;
+								setSubmitting(true);
+								props.loginUser(submitValues);
+								history.push('/dashboard');
+							}, 400);
+						}}
+					>
+						{({ isSubmitting }) => (
+							<Form id='loginForm'>
+								<Field
+									type='text'
+									name='username'
+									autoComplete='off'
+									placeholder='Username'
+								/>
+								<ErrorMessage name='username' component='div' />
+								<Field type='password' name='password' placeholder='Password' />
+								<ErrorMessage name='password' component='div' />
+								<button type='submit' disabled={isSubmitting}>
+									Submit
+								</button>
+							</Form>
+						)}
+					</Formik>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default LoginBox;
+export default connect(null, { loginUser })(LoginBox);

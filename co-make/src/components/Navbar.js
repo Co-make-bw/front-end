@@ -1,22 +1,20 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from "react-router-dom";
-import "./Navbar.css";
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
-
-    return (
-        <Router>
-            <div className="App">
-                <nav>
-                    <h2>Make-Co</h2>
-                    <div className="nav-links">
-                        <Link to="/" className="link">Home</Link>
-                    </div>
-                </nav>
-                
-            </div>
-        </Router>
-    );
+	return (
+		<div className='App'>
+			<nav>
+				<h2>Co-Make</h2>
+				<div className='nav-links'>
+					<Link to='/' className='link'>
+						Home
+					</Link>
+				</div>
+			</nav>
+		</div>
+	);
 }
 
 export default Navbar;
