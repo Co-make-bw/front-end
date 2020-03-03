@@ -26,7 +26,7 @@ const issues = [
 ]
 const LocalIssues = () => {
 	return (
-		<div>
+		<div className="card-layout">
 			{issues.map(issue => <Issue key={issue.id} issue={issue}/>)}
 			
 		</div>

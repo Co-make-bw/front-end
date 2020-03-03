@@ -27,15 +27,17 @@ const issues = [
 
 const UserIssues = () => {
 	return (
-		<div>
+		<div className="card-layout">
 			{
 				issues.map(issue => {
 					return (
-						<div>
+						<div className="card-container">
+							<div className="card">
 							<p>User Issue: {issue.title}</p>
 							<p>User Description: {issue.description}</p>
 							<p>User Location: {issue.location}</p>
 							<p>User Upvotes: {issue.upvotes}</p>
+							</div>
 						</div>)
 				})
 			}
