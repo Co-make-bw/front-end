@@ -23,6 +23,7 @@ export const dashboardReducer = (state = initialState, action) => {
 					points: action.payload.points
 				}
 			};
+
 		default:
 			return state;
 	}

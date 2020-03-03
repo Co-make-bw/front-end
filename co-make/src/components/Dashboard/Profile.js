@@ -27,8 +27,9 @@ const Profile = props => {
 };
 
 const mapStateToProps = state => {
+	console.log('here is state', state);
 	return {
-		user: state.user
+		user: state.dashboardReducer.user
 	};
 };
 
