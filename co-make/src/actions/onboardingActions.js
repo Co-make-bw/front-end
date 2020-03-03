@@ -1,26 +1,32 @@
 import axios from 'axios';
 
-export const ADD_USER = 'ADD_USER';
-export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const RESET_ERROR = 'RESET_ERROR';
 
-export const addNewUser = newUser => dispatch => {
+export const addNewUser = newUserCredentials => dispatch => {
 	axios
-		.post('/api/auth/register', newUser)
+		.post('https://comake4.herokuapp.com/api/auth/register', newUserCredentials)
 		.then(res => {
-			console.log('response from user post', res);
+			console.log('res from register user', res);
+			dispatch({ type: RESET_ERROR });
 		})
 		.catch(err => {
-			console.log('error from user post', err);
+			console.log('error from user register post', err);
+			dispatch({ type: REGISTER_ERROR });
 		});
 };
 
 export const loginUser = credentials => dispatch => {
 	axios
-		.post('/api/auth/login', credentials)
+		.post('https://comake4.herokuapp.com/api/auth/login', credentials)
 		.then(res => {
-			console.log('response from user post', res);
+			console.log('response for login:', res);
+			window.localStorage.setItem('token', res.data.token);
+			dispatch({ type: RESET_ERROR });
 		})
 		.catch(err => {
-			console.log('error from user post', err);
+			console.log('error from user login post', err);
+			dispatch({ type: LOGIN_ERROR });
 		});
 };
