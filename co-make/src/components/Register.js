@@ -19,12 +19,47 @@ function Register(props) {
                         tos: false
                     }}
                         validate={values => {
+
                         const errors = {};
+
                         if (!values.email) {
                             errors.email = 'Required';
                         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
                             errors.email = 'Invalid email address';
                         }
+
+                        if (!values.username) {
+                            errors.username = 'Required';
+                        } else if (values.username.length < 5) {
+                            errors.username = 'Username must be at least 5 characters in length';
+                        }
+
+                        if (!values.password) {
+                            errors.password = 'Required';
+                        } else if (values.password.length < 6) {
+                            errors.password = '6 or more characters is required';
+                        } else if (values.password.length > 15) {
+                            errors.password = 'Too long';
+                        } else if (values.password.search(/\d/) == -1) {
+                            errors.password = 'You must include a number';
+                        } else if (values.password.search(/[A-Z]/) == -1) {
+                            errors.password = 'You must include an upper case letter';
+                        } else if (values.password.search(/[a-z]/) == -1) {
+                            errors.password = 'You must include an lower case letter';
+                        } else if (values.password.search(/[\!\@\#\$]/) == -1) {
+                            errors.password = 'You must use at least one special character: ! @ # $';
+                        }
+
+                        if (!values.password2) {
+                            errors.password2 = 'Confirmation Email Required'
+                        } else if (values.password !== values.password2) {
+                            errors.password2 = 'Passwords do not match';
+                        }
+
+                        if (!values.tos) {
+                            errors.tos = 'You must accept the Terms of Service Agreement'
+                        }
+
                         return errors;
                     }}
                         onSubmit={(values, {setSubmitting}) => {
