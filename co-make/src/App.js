@@ -13,7 +13,7 @@ function App() {
 			<Nav />
 			<Route exact path='/' component={Default} />
 			<PrivateRoute path='/dashboard/:id' component={Dashboard} />
-			<PrivateRoute path='/issues/:id' component={LocalIssues} />
+			<PrivateRoute path='/state/:stateid' component={LocalIssues} />
 		</div>
 	);
 }

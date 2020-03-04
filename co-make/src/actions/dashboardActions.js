@@ -8,7 +8,6 @@ export const getUser = id => dispatch => {
 	axiosWithAuth()
 		.get(`https://comake4.herokuapp.com/api/users/${id}`)
 		.then(res => {
-			console.log('get users res', res);
 			dispatch({ type: GET_USER, payload: res.data });
 		})
 		.catch(err => {

@@ -20,15 +20,15 @@ const Locations = props => {
 		e.preventDefault();
 		const userID = props.user.id;
 		let tempID = 0;
-		usStates.filter((item, index) => {
+		usStates.forEach((item, index) => {
 			if (item === stateValue.value) {
-				tempID = index + 1;
+				tempID = index;
 				return item;
 			} else {
 				return 0;
 			}
 		});
-		const stateID = { state_id: tempID };
+		const stateID = { state_id: Number(tempID) + 1 };
 		props.addState(stateID, userID);
 		setEditing(false);
 	};
@@ -89,7 +89,7 @@ const Locations = props => {
 	// ROUTING
 	const history = useHistory();
 	const toStateIssues = routeID => {
-		history.push(`/issues/${routeID}`);
+		history.push(`/state/${routeID}`);
 	};
 
 	// IF NO LOCATIONS, DISPLAY FORM
@@ -155,7 +155,6 @@ const Locations = props => {
 };
 
 const mapStateToProps = state => {
-	console.log('state in locations fired');
 	return {
 		user: state.dashboardReducer.user
 	};
