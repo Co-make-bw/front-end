@@ -1,21 +1,21 @@
-import { STATE_ISSUES_ERROR, RESET_ERRORS } from '../actions/issuesActions';
+import {
+	STATE_ISSUES_ERROR,
+	RESET_ERRORS,
+	GET_STATE_ISSUES
+} from '../actions/issuesActions';
 
 const initialState = {
-	issues: [
-		{
-			title: '',
-			description: '',
-			upvotes: 0,
-			location: '',
-			user_id: null,
-			state_id: null
-		}
-	],
+	issues: [],
 	stateError: false
 };
 
 export const issuesReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case GET_STATE_ISSUES:
+			return {
+				...state,
+				issues: action.payload
+			};
 		case STATE_ISSUES_ERROR:
 			return {
 				...state,

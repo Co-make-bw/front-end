@@ -6,7 +6,6 @@ import Issue from './Issue';
 
 const LocalIssues = props => {
 	const { stateid } = useParams();
-	const history = useHistory();
 
 	useEffect(() => {
 		props.getStateIssues(stateid);
@@ -19,7 +18,7 @@ const LocalIssues = props => {
 	return (
 		<div className='card-layout'>
 			{props.issues.map(issue => (
-				<Issue key={issue.id} issue={issue} />
+				<Issue key={issue.id} issue={issue} stateID={stateid} />
 			))}
 		</div>
 	);
