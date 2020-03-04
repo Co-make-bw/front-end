@@ -3,14 +3,14 @@ import React from 'react';
 // components
 import Profile from './Profile';
 import Locations from './Locations';
-import DashboardIssues from './DashboardIssues';
+import UserIssues from '../Issues/UserIssues';
 
 const Dashboard = () => {
 	return (
 		<div>
 			<Profile />
 			<Locations />
-			<DashboardIssues />
+			<UserIssues />
 		</div>
 	);
 };

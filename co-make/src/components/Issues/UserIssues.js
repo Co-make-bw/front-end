@@ -1,49 +1,37 @@
-import React from 'react';
-import Issue from "./Issue"
-const issues = [
-    {
-        id: 16,
-        title: "No complaints",
-        description: "I just came here to just say that the fried chicken at the Puritan Backroom is delicious!",
-        location: "Manchester",
-        upvotes: 0,
-        created_at: "2020-03-03T15:42:35.153Z",
-        updated_at: "2020-03-03T15:42:35.153Z",
-        user_id: 3,
-        state_id: 29
-    },
-    {
-        id: 17,
-        title: "Bicycles",
-        description: "There needs to be more bicycle lanes downtown. I am too affraid to ride because cars never give me enough room",
-        location: "Manchester",
-        upvotes: 0,
-        created_at: "2020-03-03T15:42:35.153Z",
-        updated_at: "2020-03-03T15:42:35.153Z",
-        user_id: 3,
-        state_id: 29
-    },
-]
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getUserIssues } from '../../actions/issuesActions';
+import UserIssue from './UserIssue';
 
-const UserIssues = () => {
+const UserIssues = props => {
+	const { id } = useParams();
+
+	useEffect(() => {
+		props.getUserIssues(id);
+	}, []);
+
+	if (props.userError) {
+		return <h3>You haven't drawn attention to any issues</h3>;
+	}
+
 	return (
-		<div className="card-layout">
-			{
-				issues.map(issue => {
-					return (
-						<div className="card-container">
-							<div className="card">
-							<p>User Issue: {issue.title}</p>
-							<p>User Description: {issue.description}</p>
-							<p>User Location: {issue.location}</p>
-							<p>User Upvotes: {issue.upvotes}</p>
-							</div>
-						</div>)
-				})
-			}
-			
-		</div>
+		<>
+			<h3>My Posts</h3>
+			<div className='card-layout'>
+				{props.userIssues.map(issue => (
+					<UserIssue key={issue.id} issue={issue} />
+				))}
+			</div>
+		</>
 	);
 };
 
-export default UserIssues;
+const mapStateToProps = state => {
+	return {
+		userIssues: state.issuesReducer.userIssues,
+		userError: state.issuesReducer.userError
+	};
+};
+
+export default connect(mapStateToProps, { getUserIssues })(UserIssues);
