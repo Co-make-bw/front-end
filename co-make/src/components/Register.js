@@ -62,3 +62,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { addNewUser })(Register);
+

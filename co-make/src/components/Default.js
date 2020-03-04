@@ -50,6 +50,7 @@ function Default() {
 					{loginBox && <LoginBox shLogin={showLogin} />}
 
 					{registerBox && <Register shRegistration={showRegistration} />}
+
 				</div>
 			</div>
 		</div>

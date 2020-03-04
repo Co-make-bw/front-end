@@ -62,7 +62,6 @@ function LoginBox(props) {
 			</div>
 		</div>
 	);
-
 }
 
 export default connect(null, {})(LoginBox);
