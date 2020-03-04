@@ -1,0 +1,39 @@
+Form#loginForm {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+
+input {
+    margin-bottom: 12px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+
+div.tos {
+    line-height: 14px;
+}
+
+.star {
+    color: red;
+}
+
+button {
+    background: #4B99AD;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;;
+}
+
+.box {
+    min-height: 260px;
+}
