@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import LoginBox from './LoginBox';
 import Register from './Register';
-import LoggedInState from './LoggedInState';
 
 import './Default.css';
 
 function Default() {
 	const [loginBox, setLoginBox] = useState(true);
 	const [registerBox, setRegisterBox] = useState(false);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	function showLogin(e) {
 		e.preventDefault();
@@ -24,9 +22,7 @@ function Default() {
 
 	return (
 		<div className='root-container'>
-			<div style={{ marginBottom: 30 }}>
-				<LoggedInState loggedInStatus={isLoggedIn} />
-			</div>
+			<div style={{ marginBottom: 30 }}></div>
 			<div className='box-controller'>
 				<div className='controller'>
 					<div
