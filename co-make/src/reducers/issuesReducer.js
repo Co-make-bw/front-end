@@ -1,7 +1,9 @@
 import {
 	STATE_ISSUES_ERROR,
 	RESET_ERRORS,
-	GET_STATE_ISSUES
+	GET_STATE_ISSUES,
+	ADD_UPVOTE,
+	REMOVE_UPVOTE
 } from '../actions/issuesActions';
 
 const initialState = {
@@ -25,6 +27,32 @@ export const issuesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				stateError: false
+			};
+		case ADD_UPVOTE:
+			const newUpvoteIssues = state.issues.map(item => {
+				if (item.id === action.payload.id) {
+					return action.payload;
+				} else {
+					return item;
+				}
+			});
+
+			return {
+				...state,
+				issues: newUpvoteIssues
+			};
+		case REMOVE_UPVOTE:
+			const newUnvoteIssues = state.issues.map(item => {
+				if (item.id === action.payload.id) {
+					return action.payload;
+				} else {
+					return item;
+				}
+			});
+
+			return {
+				...state,
+				issues: newUnvoteIssues
 			};
 		default:
 			return state;
