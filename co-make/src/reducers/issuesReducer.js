@@ -1,3 +1,5 @@
+import { STATE_ISSUES_ERROR, RESET_ERRORS } from '../actions/issuesActions';
+
 const initialState = {
 	issues: [
 		{
@@ -9,11 +11,21 @@ const initialState = {
 			state_id: null
 		}
 	],
-	state: ''
+	stateError: false
 };
 
 export const issuesReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case STATE_ISSUES_ERROR:
+			return {
+				...state,
+				stateError: true
+			};
+		case RESET_ERRORS:
+			return {
+				...state,
+				stateError: false
+			};
 		default:
 			return state;
 	}

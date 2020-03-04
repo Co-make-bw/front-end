@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Issue = () => {
+
+
+const Issue = (props) => {
+	console.log(props)
 	return (
-		<div>
-			<h1>Issue</h1>
+		<div className="card-container">
+			<div className="card">
+			<p>Issue: {props.issue.title}</p>
+			<p>Description: {props.issue.description}</p>
+			<p>Location: {props.issue.location}</p>
+			<p>Upvotes: {props.issue.upvotes}</p>
+			</div>
 		</div>
 	);
 };
