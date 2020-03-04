@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addState } from '../../actions/dashboardActions';
+import { addState, deleteState } from '../../actions/dashboardActions';
 
 const Locations = props => {
 	const [editing, setEditing] = useState(false);
@@ -32,6 +32,11 @@ const Locations = props => {
 		console.log('state ID', stateID);
 		props.addState(stateID, userID);
 		setEditing(false);
+	};
+	const handleDelete = state_id => {
+		const stateID = state_id;
+		const userID = props.user.id;
+		props.deleteState(stateID, userID);
 	};
 
 	// LOCATIONS INFO
@@ -128,6 +133,7 @@ const Locations = props => {
 							<span
 								onClick={e => {
 									e.stopPropagation();
+									handleDelete(location.state_id);
 								}}
 							>
 								x
@@ -162,4 +168,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { addState })(Locations);
+export default connect(mapStateToProps, { addState, deleteState })(Locations);

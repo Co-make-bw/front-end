@@ -1,4 +1,9 @@
-import { GET_USER, ADD_STATE, GET_STATES } from '../actions/dashboardActions';
+import {
+	GET_USER,
+	ADD_STATE,
+	DELETE_STATE,
+	GET_STATES
+} from '../actions/dashboardActions';
 
 const initialState = {
 	user: {
@@ -36,6 +41,20 @@ export const dashboardReducer = (state = initialState, action) => {
 					locations: action.payload
 				}
 			};
+		case DELETE_STATE:
+			if (state.user.locations.length !== 0) {
+				const newLocations = state.user.locations.filter(
+					item => item.state_id !== action.payload
+				);
+				return {
+					user: {
+						...state.user,
+						locations: newLocations
+					}
+				};
+			} else {
+				return state;
+			}
 		default:
 			return state;
 	}
