@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const RESET_ERROR = 'RESET_ERROR';
 

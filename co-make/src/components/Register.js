@@ -22,7 +22,13 @@ function Register(props) {
 		e.preventDefault();
 		const user = newUser;
 		props.addNewUser(user);
-		history.push('/');
+		setTimeout(function() {
+			if (props.registerError) {
+				props.shRegistration();
+			} else {
+				props.shLogin();
+			}
+		}, 1000);
 	};
 
 	return (
@@ -57,7 +63,7 @@ function Register(props) {
 
 const mapStateToProps = state => {
 	return {
-		registerError: state.registerError
+		registerError: state.onboardingReducer.registerError
 	};
 };
 

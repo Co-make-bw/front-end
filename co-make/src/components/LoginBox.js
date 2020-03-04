@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import './Box.css';
 
 function LoginBox(props) {
 	const history = useHistory();
+	const [loginError, setLoginError] = useState(false);
 
 	return (
 		<div className='inner-container'>
@@ -26,6 +27,7 @@ function LoginBox(props) {
 						}}
 						onSubmit={(values, { setSubmitting }) => {
 							let submitValues = values;
+							setSubmitting(true);
 							axios
 								.post(
 									'https://comake4.herokuapp.com/api/auth/login',
@@ -34,10 +36,15 @@ function LoginBox(props) {
 								.then(res => {
 									console.log('response for login:', res);
 									window.localStorage.setItem('token', res.data.token);
-									history.push(`/dashboard/${res.data.user_id}`);
+									setLoginError(false);
+									setTimeout(function() {
+										history.push(`/dashboard/${res.data.user_id}`);
+									}, 2000);
 								})
 								.catch(err => {
 									console.log('error from user login post', err);
+									setLoginError(true);
+									setSubmitting(false);
 								});
 						}}
 					>
@@ -55,6 +62,7 @@ function LoginBox(props) {
 								<button type='submit' disabled={isSubmitting}>
 									Submit
 								</button>
+								{loginError && <p>Wrong username and/or password</p>}
 							</Form>
 						)}
 					</Formik>

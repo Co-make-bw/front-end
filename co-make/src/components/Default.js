@@ -8,14 +8,12 @@ function Default() {
 	const [loginBox, setLoginBox] = useState(true);
 	const [registerBox, setRegisterBox] = useState(false);
 
-	function showLogin(e) {
-		e.preventDefault();
+	function showLogin() {
 		setLoginBox(true);
 		setRegisterBox(false);
 	}
 
-	function showRegistration(e) {
-		e.preventDefault();
+	function showRegistration() {
 		setLoginBox(false);
 		setRegisterBox(true);
 	}
@@ -45,7 +43,9 @@ function Default() {
 				<div className='controller'>
 					{loginBox && <LoginBox shLogin={showLogin} />}
 
-					{registerBox && <Register shRegistration={showRegistration} />}
+					{registerBox && (
+						<Register shLogin={showLogin} shRegistration={showRegistration} />
+					)}
 				</div>
 			</div>
 		</div>
