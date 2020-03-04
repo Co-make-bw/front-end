@@ -1,15 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 
-import Nav from './components/Navbar';
-import Default from './components/Default';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import DefaultContent from './components/DefaultContent';
 
 function App() {
 	return (
 		<div>
-			<Nav />
-			<Route exact path='/' component={Default} />
+			<Navbar />
+			<DefaultContent />
 			<Footer />
 		</div>
 	);
