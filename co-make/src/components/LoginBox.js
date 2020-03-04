@@ -7,7 +7,7 @@ import './Box.css';
 
 function LoginBox(props) {
 	// const history = useHistory();
-	console.log("props: ", props);
+	console.log("props: ", props); 
 
 	return (
 		<div className='inner-container'>
@@ -33,10 +33,23 @@ function LoginBox(props) {
 									submitValues
 								)
 								.then(res => {
+
 									console.log('response for login:', res);
-									props.setLogin(true);
-									// window.localStorage.setItem('token', res.data.token);
-									// history.push(`/dashboard/${res.data.user_id}`);
+									const myData = [];
+									res.data.forEach(({username, password, email }) => {
+										myData.push({ 
+											username: `${username}`, 
+											password: `${password}`,
+											email: `${email}` });
+									});
+
+									console.log('myData Array: ', myData);
+
+									// props.setLogin(true);
+									// window.localStorage.setItem('id', res.data[0].id);
+									// let currentId = window.localStorage.getItem('id');
+									// console.log(currentId);
+									// history.push(`/dashboard/${res.data[0].id}`);
 								})
 								.catch(err => {
 									console.log('error from user login post', err);

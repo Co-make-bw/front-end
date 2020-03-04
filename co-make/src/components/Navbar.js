@@ -4,9 +4,11 @@ import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 import Login from './Login';
+import DashboardDefault from './Dashboard/Default';
 import './Navbar.css';
 
 function Navbar() {
+
 	return (
 		<Router>
 		<div className='App'>
@@ -38,6 +40,9 @@ function Navbar() {
 			<Route path="/login">
 			  <Login />
 			</Route>
+			<Route path="/dashboard/:id">
+			  <DashboardDefault />
+			</Route>
 			<Route path="/">
 			  <Home />
 			</Route>
@@ -45,13 +50,6 @@ function Navbar() {
 		</div>
 	  </Router>
 
-
-
-
-
-
-
-		
 	);
 }
 

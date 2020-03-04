@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { gsap } from 'gsap';
+import './Default.css';
 
-function DefaultContent() {
+function Tagline(props) {
 
     useEffect(() => {
         gsap.timeline()
@@ -10,11 +11,11 @@ function DefaultContent() {
             .fromTo("#sp3", {opacity: 0}, {duration: 1, opacity: 1})
             .fromTo("#sp1", {opacity: 0}, {duration: 1, opacity: 1})
             .fromTo("#sp5", {opacity: 0}, {duration: 1, opacity: 1})
-    }, []);
+    }, [props.currentPage]);
 
     return (
-        <div style={{ minHeight: "350px" }}>
-            <h3 id="tagline" style={{ textAlign: "center" }}>
+        <div>
+            <h3 id="tagline">
                 <span id="sp1">Imagination.</span> 
                 <span id="sp2">Creativity.</span> 
                 <span id="sp3">Proactive.</span> 
@@ -25,4 +26,4 @@ function DefaultContent() {
     )
 }
 
-export default DefaultContent;
+export default Tagline;
