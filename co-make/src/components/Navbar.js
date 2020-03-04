@@ -1,10 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import About from './About';
+import Contact from './Contact';
 import './Navbar.css';
 
-function Navbar(props) {
+function Navbar() {
 	return (
+		<Router>
 		<div className='App'>
 			<nav>
 				<h2>Co-Make</h2>
@@ -12,24 +14,38 @@ function Navbar(props) {
 					<Link to='/' className='link'>
 						Home
 					</Link>
-					{props.user.id && (
-						<Link to={`/dashboard/${props.user.id}`} className='link'>
-							Dashboard
-						</Link>
-					)}
+					<Link to='/about' className='link'>
+						About
+					</Link>
+					<Link to='/contact' className='link'>
+						Contact
+					</Link>
 				</div>
 			</nav>
+
+		  <Switch>
+			<Route path="/about">
+			  <About />
+			</Route>
+			<Route path="/contact">
+			  <Contact />
+			</Route>
+			<Route path="/">
+			  <Home />
+			</Route>
+		  </Switch>
 		</div>
+	  </Router>
+
+
+
+
+
+
+
+		
 	);
 }
 
-const mapStateToProps = state => {
-	return {
-		user: {
-			id: state.dashboardReducer.user.id
-		}
-	};
-};
-
-export default connect(mapStateToProps, {})(Navbar);
+export default Navbar;
 

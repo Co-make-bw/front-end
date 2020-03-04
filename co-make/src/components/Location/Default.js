@@ -11,3 +11,5 @@ function Default() {
         </div>
     )
 }
+
+export default Default;
