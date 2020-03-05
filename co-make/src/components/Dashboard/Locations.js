@@ -29,7 +29,6 @@ const Locations = props => {
 			}
 		});
 		const stateID = { state_id: Number(tempID) + 1 };
-		console.log('state ID', stateID);
 		props.addState(stateID, userID);
 		setEditing(false);
 	};

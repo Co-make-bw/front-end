@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getUserIssues } from '../../actions/issuesActions';
 import UserIssue from './UserIssue';
 
 const UserIssues = props => {
 	const { id } = useParams();
+	const history = useHistory();
 
 	useEffect(() => {
 		props.getUserIssues(id);
@@ -15,6 +16,10 @@ const UserIssues = props => {
 		return <h3>You haven't drawn attention to any issues</h3>;
 	}
 
+	const addIssueRoute = e => {
+		history.push(`/dashboard/${id}/add-issue`);
+	};
+
 	return (
 		<>
 			<h3>My Posts</h3>
@@ -23,6 +28,7 @@ const UserIssues = props => {
 					<UserIssue key={issue.id} issue={issue} />
 				))}
 			</div>
+			<button onClick={addIssueRoute}>Add a new issue</button>
 		</>
 	);
 };
