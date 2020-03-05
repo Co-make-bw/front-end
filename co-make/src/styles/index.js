@@ -59,6 +59,7 @@ export const StyledButton = styled.button`
 	padding: 0.5rem 1.5rem;
 	margin-top: 2rem;
 	border: 1px solid green;
+	border-radius: 3px;
 	background-color: white;
 	color: black;
 	text-align: center;
@@ -87,10 +88,10 @@ export const StyledInput = styled.input`
 	color: black;
 `;
 export const StyledError = styled.p`
-    color: white;
-    background-color: #FF4A48
-    font-size: 1rem;
-    border-radius: 5px;
+	color: white;
+	background-color: #ff4a48;
+	font-size: 1rem;
+	border-radius: 5px;
 `;
 
 // PROFILE STYLES
@@ -102,7 +103,7 @@ export const ProfileContainer = styled.div`
 	top: 0;
 	left: 0;
 	overflow-x: hidden;
-	padding-top: 12vh;
+	padding-top: 150px;
 	background: linear-gradient(
 		275deg,
 		rgba(94, 102, 118, 1) 50%,
@@ -156,6 +157,7 @@ export const LocationButton = styled.button`
 	padding: 0.5rem 1.5rem;
 	margin: 1rem auto;
 	border: 1px solid green;
+	border-radius: 3px;
 	background-color: white;
 	color: black;
 	text-align: center;
@@ -165,5 +167,34 @@ export const LocationButton = styled.button`
 		background-color: green;
 		color: white;
 		transition: background-color 1s, color 1s;
+	}
+`;
+export const MainText = styled.h4`
+	font-size: 1.2rem;
+`;
+export const StateList = styled.ul`
+	list-style-type: none;
+`;
+export const StateItem = styled.li`
+	font-size: 0.8rem;
+	margin-bottom: 1rem;
+
+	&:hover {
+		cursor: pointer;
+		font-size: 1rem;
+		transition: font-size 0.5s;
+	}
+`;
+export const StateDelete = styled.span`
+	color: #ff4a48;
+	background-color: white;
+	font-size: 1.2rem;
+	padding: 0.5rem;
+	border-radius: 50%;
+
+	&:hover {
+		color: white;
+		background-color: #ff4a48;
+		transition: color 0.5s, background-color 0.5s;
 	}
 `;

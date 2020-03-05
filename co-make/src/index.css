@@ -3,6 +3,7 @@ body {
 	padding: 0;
 	width: 100%;
 	font-size: 62.5%;
+	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

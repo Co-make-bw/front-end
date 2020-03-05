@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addState, deleteState } from '../../actions/dashboardActions';
-import { MainContainer, LocationButton } from '../../styles';
+import {
+	MainContainer,
+	LocationButton,
+	MainText,
+	StateList,
+	StateItem,
+	StateDelete
+} from '../../styles';
 
 const Locations = props => {
 	const [editing, setEditing] = useState(false);
@@ -103,7 +110,7 @@ const Locations = props => {
 	if (props.user.locations.length === 0) {
 		return (
 			<MainContainer>
-				<p>Add the states you care about and get started!</p>
+				<MainText>Add the states you care about and get started!</MainText>
 				{!editing && (
 					<LocationButton onClick={editStates}>Add States</LocationButton>
 				)}
@@ -127,25 +134,24 @@ const Locations = props => {
 	// IF THERE ARE LOCATIONS, SHOW LOCATIONS AND FORM
 	return (
 		<MainContainer>
-			<p>Your States:</p>
-			<ul>
+			<MainText>Your States:</MainText>
+			<StateList>
 				{props.user.locations.map(location => (
-					<li key={location.state_id}>
+					<StateItem key={location.state_id}>
 						<span onClick={() => toStateIssues(location.state_id)}>
-							<span
+							<StateDelete
 								onClick={e => {
 									e.stopPropagation();
 									handleDelete(location.state_id);
 								}}
 							>
 								x
-							</span>{' '}
+							</StateDelete>{' '}
 							{location.state}
 						</span>
-					</li>
+					</StateItem>
 				))}
-			</ul>
-			<p>Add more States</p>
+			</StateList>
 			{!editing && (
 				<LocationButton onClick={editStates}>Add States</LocationButton>
 			)}
