@@ -11,7 +11,6 @@ import './Navbar.css';
 
 function Navbar(props) {
 
-
 	return (
 		<Router>
 		<div className='App'>
@@ -30,7 +29,6 @@ function Navbar(props) {
 					<LogStatusLink
 						isLoggedIn = { props.isLoggedIn }
 					/>
-					
 				</div>
 			</nav>
 
@@ -47,6 +45,7 @@ function Navbar(props) {
 			  setLoginBox = {props.setLoginBox} loginBox = {props.loginBox } 
 			  setRegisterBox = { props.setRegisterBox } registerBox = { props.registerBox }
 			  setIsLoggedIn = { props.setIsLoggedIn }  isLoggedIn = { props.isLoggedIn }
+			  loginAttempt = { props.loginAttempt } setLoginAttempt = { props.setLoginAttempt }
 
 			 />
 			</Route>
@@ -62,7 +61,7 @@ function Navbar(props) {
 		  </Switch>
 		</div>
 	  </Router>
-
+		
 	);
 }
 

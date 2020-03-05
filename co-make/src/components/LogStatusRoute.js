@@ -8,7 +8,7 @@ function LogStatusLink(props) {
     if ( props.isLoggedIn ) {
         return (
             <Route path="/logout">
-                <Logout />
+                <Logout setIsLoggedIn = {props.setIsLoggedIn} />
             </Route>
         )
     }

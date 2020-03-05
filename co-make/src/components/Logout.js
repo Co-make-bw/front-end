@@ -5,9 +5,13 @@ import Home from './Home';
 function Logout(props) {
 
     const history = useHistory();
+    
+    props.setIsLoggedIn(false);
+    console.log("Props from logout: ", props);
 
     return (
         <>
+            
             { history.push(`/`) }
             <Router>
                 <Switch>

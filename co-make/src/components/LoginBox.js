@@ -2,14 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import DashboardDefault from './Dashboard/Default';
 import './Box.css';
 
 function LoginBox(props) {
 	const history = useHistory(); 
-
 	return (
 		<div className='inner-container'>
 			<div className='box'>
@@ -36,7 +34,7 @@ function LoginBox(props) {
 
 							return errors;
 						}}
-						onSubmit={( values ) => {
+						onSubmit={( values, { resetForm } ) => {
 							let submitValues = values;
 							axios
 								.get(
@@ -71,9 +69,13 @@ function LoginBox(props) {
 											history.push(`/dashboard/${currentId}`);
 										} else {
 											console.log("Password not good.")
+											resetForm({});
+											alert("Either your username or password was incorrect.  Please try again!");
 										}
 									} else {
 										console.log("No user found");
+										resetForm({});
+										alert("Either your username or password was incorrect.  Please try again!");
 									}
 								})
 								.catch(err => {
@@ -88,6 +90,7 @@ function LoginBox(props) {
 									name='username'
 									autoComplete='off'
 									placeholder='Username'
+									autoFocus
 								/>
 								<ErrorMessage name='username' component='div' />
 								<Field type='password' name='password' placeholder='Password' />
@@ -113,4 +116,4 @@ function LoginBox(props) {
 	);
 }
 
-export default connect(null, {})(LoginBox);
+export default LoginBox;

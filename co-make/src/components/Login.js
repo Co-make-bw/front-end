@@ -1,7 +1,6 @@
 import React from "react";
 import LoginBox from "./LoginBox";
 import Register from "./Register";
-import LoggedInState from "./LoggedInState";
 import Tagline from './Tagline';
 import "./Default.css";
 
@@ -42,7 +41,10 @@ function Login(props) {
 
                     { props.loginBox && 
                     <LoginBox
-                    setLogin = { props.setIsLoggedIn }/> }
+                    setLogin = { props.setIsLoggedIn } 
+                    loginAttempt = { props.loginAttempt } 
+                    setLoginAttempt = { props.setLoginAttempt }
+                    /> }
 
                     { props.registerBox && 
                     <Register
@@ -51,7 +53,6 @@ function Login(props) {
                     
                 </div>
             </div>
-            <div style={{marginBottom: 30 }}><LoggedInState loggedInStatus={props.isLoggedIn} /></div>
         </div>
     )
     
