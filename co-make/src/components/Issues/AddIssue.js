@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addNewIssue } from '../../actions/issuesActions';
 
-const AddIssue = () => {
+const AddIssue = props => {
 	const { id } = useParams();
 	const history = useHistory();
 	const [stateValue, setStateValue] = useState({ value: '' });
