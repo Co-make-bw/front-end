@@ -2,6 +2,7 @@ import React from "react";
 import LoginBox from "./LoginBox";
 import Register from "./Register";
 import LoggedInState from "./LoggedInState";
+import Tagline from './Tagline';
 import "./Default.css";
 
 function Login(props) {
@@ -20,7 +21,8 @@ function Login(props) {
 
     return (
         <div className="root-container">
-            
+            <h1>Login Page</h1>
+            <Tagline />
             <div className="box-controller">
                 <div className="controller">
                     <div 

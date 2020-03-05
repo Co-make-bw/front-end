@@ -1,6 +1,4 @@
 import React from 'react';
-
-// components
 import EditProfile from './EditProfile';
 import ViewProfile from './ViewProfile'
 

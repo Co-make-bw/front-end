@@ -65,20 +65,24 @@ function Register(props) {
                         onSubmit={(values, {setSubmitting}) => {
                         setTimeout(() => {
                             console.log(values);
-                            setSubmitting(true);
+                            setSubmitting(true); 
                         }, 400);
                     }}>
                         {({ values, handleChange, isSubmitting}) => (
                             <Form id="loginForm">
+                                
                                 <label htmlFor="username">Username<span className="star">*</span></label>
                                 <Field placeholder="Username" autoFocus type="text" name="username" autoComplete="off" onChange = {handleChange} />
                                 <ErrorMessage name="username" component="div"/>
+                                
                                 <label htmlFor="email">Email<span className="star">*</span></label>
                                 <Field placeholder="Email" type="email" name="email" autoComplete="off"/>
                                 <ErrorMessage name="email" component="div"/>
+                                
                                 <label htmlFor="password">Password<span className="star">*</span></label>
                                 <Field placeholder="Password" type="password" name="password" autoComplete="off"/>
                                 <ErrorMessage name="password" component="div"/>
+                                
                                 <label htmlFor="password2">Confirm Password<span className="star">*</span></label>
                                 <Field placeholder="Confirm Password" type="password" name="password2" autoComplete="off"/>
                                 <ErrorMessage name="password2" component="div"/>
@@ -87,9 +91,11 @@ function Register(props) {
                                     <label htmlFor="tos">Accept Terms of Service<span className="star">*</span></label>
                                     <ErrorMessage name="tos" component="div"/>
                                 </div>
+                                
                                 <button type="submit" disabled={isSubmitting}>
                                     Submit
                                 </button>
+                                
                                 <pre>{JSON.stringify(values, null, 2)}</pre>
                             </Form>
                             

@@ -1,12 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import DashboardDefault from './Dashboard/Default';
 import './Box.css';
 
 function LoginBox(props) {
-	const history = useHistory();
+	const history = useHistory(); 
 
 	return (
 		<div className='inner-container'>
@@ -18,10 +20,20 @@ function LoginBox(props) {
 							password: ''
 						}}
 						validate={values => {
+
 							const errors = {};
 							if (!values.username) {
 								errors.username = 'Required';
+							} else if (values.username.length < 5) {
+								errors.username = 'Username must be at least 5 characters in length';
 							}
+
+							if (!values.password) {
+								errors.password = 'Required';
+							} else if (values.password.length < 6) {
+								errors.password = '6 or more characters is required';
+							}
+
 							return errors;
 						}}
 						onSubmit={( values ) => {
@@ -92,6 +104,15 @@ function LoginBox(props) {
 						)}
 					</Formik>
 				</div>
+				<Router>
+					<Switch>
+						<Route>
+						<Route path="/dashboard/:id">
+							<DashboardDefault />
+						</Route>
+						</Route>
+					</Switch>
+				</Router>
 			</div>
 		</div>
 	);
