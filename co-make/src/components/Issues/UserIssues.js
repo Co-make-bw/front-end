@@ -9,7 +9,7 @@ const UserIssues = props => {
 
 	useEffect(() => {
 		props.getUserIssues(id);
-	}, []);
+	}, [props.userIssues]);
 
 	if (props.userError || props.userIssues.length === 0) {
 		return (
@@ -25,7 +25,7 @@ const UserIssues = props => {
 			<h3>My Posts</h3>
 			<div className='card-layout'>
 				{props.userIssues.map(issue => (
-					<UserIssue key={issue.id} issue={issue} />
+					<UserIssue key={issue.id} userID={id} issue={issue} />
 				))}
 			</div>
 			<Link to={`/dashboard/${id}/add-issue`}>Add a New Issue</Link>

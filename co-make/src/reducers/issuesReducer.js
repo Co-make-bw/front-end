@@ -2,6 +2,7 @@ import {
 	STATE_ISSUES_ERROR,
 	USER_ISSUES_ERROR,
 	ADD_ISSUE_ERROR,
+	DELETE_ISSUE_ERROR,
 	RESET_ERRORS,
 	GET_STATE_ISSUES,
 	GET_USER_ISSUES,
@@ -14,7 +15,8 @@ const initialState = {
 	userIssues: [],
 	stateError: false,
 	userError: false,
-	addIssueError: false
+	addIssueError: false,
+	deleteIssueError: false
 };
 
 export const issuesReducer = (state = initialState, action) => {
@@ -28,7 +30,6 @@ export const issuesReducer = (state = initialState, action) => {
 			const filteredUserIssues = action.payload.filter(
 				item => item.user_id === Number(action.id)
 			);
-			console.log('filtered user issues', filteredUserIssues);
 			return {
 				...state,
 				userIssues: filteredUserIssues
@@ -48,12 +49,18 @@ export const issuesReducer = (state = initialState, action) => {
 				...state,
 				addIssueError: true
 			};
+		case DELETE_ISSUE_ERROR:
+			return {
+				...state,
+				deleteIssueError: true
+			};
 		case RESET_ERRORS:
 			return {
 				...state,
 				stateError: false,
 				userError: false,
-				addIssueError: false
+				addIssueError: false,
+				deleteIssueError: false
 			};
 		case ADD_UPVOTE:
 			const newUpvoteIssues = state.issues.map(item => {

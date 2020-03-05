@@ -8,6 +8,7 @@ import './Box.css';
 function LoginBox(props) {
 	const history = useHistory();
 	const [loginError, setLoginError] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<div className='inner-container'>
@@ -28,6 +29,7 @@ function LoginBox(props) {
 						onSubmit={(values, { setSubmitting }) => {
 							let submitValues = values;
 							setSubmitting(true);
+							setLoading(true);
 							axios
 								.post(
 									'https://comake4.herokuapp.com/api/auth/login',
@@ -39,12 +41,14 @@ function LoginBox(props) {
 									setLoginError(false);
 									setTimeout(function() {
 										history.push(`/dashboard/${res.data.user_id}`);
-									}, 2000);
+										setLoading(false);
+									}, 3000);
 								})
 								.catch(err => {
 									console.log('error from user login post', err);
 									setLoginError(true);
 									setSubmitting(false);
+									setLoading(false);
 								});
 						}}
 					>
@@ -63,6 +67,7 @@ function LoginBox(props) {
 									Submit
 								</button>
 								{loginError && <p>Wrong username and/or password</p>}
+								{loading && <p>loading...</p>}
 							</Form>
 						)}
 					</Formik>
