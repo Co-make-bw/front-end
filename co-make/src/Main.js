@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import AuthenticationStatus from './components/AuthenticationStatus';
 import Footer from './components/Footer';
 
-function Main() {
+function Main() { 
 
     const [loginBox, setLoginBox] = useState(true);
     const [registerBox, setRegisterBox] = useState(false);

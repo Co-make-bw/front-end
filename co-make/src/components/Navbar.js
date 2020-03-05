@@ -4,12 +4,14 @@ import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 import Login from './Login';
+import Logout from './Logout';
 import LogStatusLink from './LogStatusLink';
-import LogStatusRoute from './LogStatusRoute';
 import DashboardDefault from './Dashboard/Default';
 import './Navbar.css';
 
 function Navbar(props) {
+
+	console.log("From Navbar isLoggedIn: ", props.isLoggedIn)
 
 	return (
 		<Router>
@@ -28,7 +30,7 @@ function Navbar(props) {
 					</Link>
 					<LogStatusLink
 						isLoggedIn = { props.isLoggedIn }
-					/>
+					/> 
 				</div>
 			</nav>
 
@@ -40,14 +42,17 @@ function Navbar(props) {
 			  <Contact />
 			</Route>
 			<Route path="/login">
-			  <Login
-			  
-			  setLoginBox = {props.setLoginBox} loginBox = {props.loginBox } 
-			  setRegisterBox = { props.setRegisterBox } registerBox = { props.registerBox }
-			  setIsLoggedIn = { props.setIsLoggedIn }  isLoggedIn = { props.isLoggedIn }
-			  loginAttempt = { props.loginAttempt } setLoginAttempt = { props.setLoginAttempt }
+				<Login
 
-			 />
+				setLoginBox = {props.setLoginBox} loginBox = {props.loginBox } 
+				setRegisterBox = { props.setRegisterBox } registerBox = { props.registerBox }
+				setIsLoggedIn = { props.setIsLoggedIn }  isLoggedIn = { props.isLoggedIn }
+				loginAttempt = { props.loginAttempt } setLoginAttempt = { props.setLoginAttempt }
+
+				/>
+			</Route>
+			<Route path="/logout">
+				<Logout setIsLoggedIn = { props.setIsLoggedIn }  isLoggedIn = { props.isLoggedIn } />
 			</Route>
 			<Route path="/dashboard/:id">
 				<DashboardDefault />
@@ -55,13 +60,9 @@ function Navbar(props) {
 			<Route path="/">
 			  <Home />
 			</Route>
-			<Route>
-				<LogStatusRoute isLoggedIn = { props.isLoggedIn } />		
-			</Route>
 		  </Switch>
 		</div>
 	  </Router>
-		
 	);
 }
 

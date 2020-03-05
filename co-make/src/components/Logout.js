@@ -1,29 +1,18 @@
-import React from "react";
-import { useHistory, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './Home';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Logout(props) {
 
-    const history = useHistory();
+    let setLogin = props.setIsLoggedIn;
     
-    props.setIsLoggedIn(false);
-    console.log("Props from logout: ", props);
+    useEffect(() => {
+        setLogin(false);
+    }, [setLogin]);
 
-    return (
-        <>
-            
-            { history.push(`/`) }
-            <Router>
-                <Switch>
-                    <Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                    </Route>
-                </Switch>
-            </Router>
-        </>
-    )
+    const history = useHistory();
+    history.push(`/`);
+
+    return null;
 }
 
 export default Logout;

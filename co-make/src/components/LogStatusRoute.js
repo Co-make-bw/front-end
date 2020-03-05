@@ -3,9 +3,12 @@ import { Route } from 'react-router-dom';
 import Login from './Login';
 import Logout from './Logout';
 
-function LogStatusLink(props) {
+function LogStatusRoute(props) {
+
+    console.log("Props from LogStatusRoute: ", props);
 
     if ( props.isLoggedIn ) {
+        
         return (
             <Route path="/logout">
                 <Logout setIsLoggedIn = {props.setIsLoggedIn} />
@@ -21,4 +24,4 @@ function LogStatusLink(props) {
 
 }
 
-export default LogStatusLink;
+export default LogStatusRoute;
