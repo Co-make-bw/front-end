@@ -1,15 +1,24 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 
-function Logout() {
+function Logout(props) {
 
-    sessionStorage.clear();
     const history = useHistory();
-    history.push(`/`);
 
     return (
-        <Home />
+        <>
+            { history.push(`/`) }
+            <Router>
+                <Switch>
+                    <Route>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+                    </Route>
+                </Switch>
+            </Router>
+        </>
     )
 }
 

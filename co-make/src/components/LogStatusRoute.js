@@ -5,13 +5,14 @@ import Logout from './Logout';
 
 function LogStatusLink(props) {
 
-    if ( props.loggedIn ) {
+    if ( props.isLoggedIn ) {
         return (
             <Route path="/logout">
                 <Logout />
             </Route>
         )
     }
+    
     return (
         <Route path="/login">
             <Login />
@@ -21,6 +22,3 @@ function LogStatusLink(props) {
 }
 
 export default LogStatusLink;
-
-
-

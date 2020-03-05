@@ -65,12 +65,9 @@ function LoginBox(props) {
 											return user["password"] === values.password;
 										});
 										if (passwordResults.length > 0) {
-											console.log("Password is good");
 											props.setLogin(true);
-											console.log("ID: ", passwordResults[0]["id"]);
 											window.sessionStorage.setItem('id', passwordResults[0]["id"]);
 											let currentId = window.sessionStorage.getItem('id');
-											console.log(currentId);
 											history.push(`/dashboard/${currentId}`);
 										} else {
 											console.log("Password not good.")
@@ -78,8 +75,6 @@ function LoginBox(props) {
 									} else {
 										console.log("No user found");
 									}
-
-									
 								})
 								.catch(err => {
 									console.log('error from user login post', err);

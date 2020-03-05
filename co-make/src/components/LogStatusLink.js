@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 function LogStatusLink(props) {
 
-    if ( props.loggedIn ) {
+    if ( props.isLoggedIn ) {
         return (
             <Link to='/logout' className='link'>
                 Logout
