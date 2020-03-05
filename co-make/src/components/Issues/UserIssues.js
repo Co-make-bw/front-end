@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { getUserIssues } from '../../actions/issuesActions';
 import UserIssue from './UserIssue';
 
@@ -12,8 +12,13 @@ const UserIssues = props => {
 		props.getUserIssues(id);
 	}, []);
 
-	if (props.userError) {
-		return <h3>You haven't drawn attention to any issues</h3>;
+	if (props.userError || props.userIssues.length === 0) {
+		return (
+			<>
+				<h3>You haven't drawn attention to any issues</h3>
+				<Link to={`/dashboard/${id}/add-issue`}>Add a New Issue</Link>
+			</>
+		);
 	}
 
 	const addIssueRoute = e => {
@@ -28,7 +33,7 @@ const UserIssues = props => {
 					<UserIssue key={issue.id} issue={issue} />
 				))}
 			</div>
-			<button onClick={addIssueRoute}>Add a new issue</button>
+			<Link to={`/dashboard/${id}/add-issue`}>Add a New Issue</Link>
 		</>
 	);
 };

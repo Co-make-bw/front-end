@@ -23,17 +23,13 @@ export const issuesReducer = (state = initialState, action) => {
 				issues: action.payload
 			};
 		case GET_USER_ISSUES:
-			if (action.payload.isArray) {
-				return {
-					...state,
-					userIssues: action.payload
-				};
-			} else {
-				return {
-					...state,
-					userIssues: [action.payload]
-				};
-			}
+			const filteredUserIssues = action.payload.filter(
+				item => item.user_id === action.id
+			);
+			return {
+				...state,
+				userIssues: filteredUserIssues
+			};
 		case STATE_ISSUES_ERROR:
 			return {
 				...state,

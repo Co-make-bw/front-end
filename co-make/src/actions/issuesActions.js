@@ -25,10 +25,10 @@ export const getStateIssues = stateID => dispatch => {
 };
 export const getUserIssues = userID => dispatch => {
 	axiosWithAuth()
-		.get(`https://comake4.herokuapp.com/api/issues/${userID}`)
+		.get(`https://comake4.herokuapp.com/api/issues`)
 		.then(res => {
 			dispatch({ type: RESET_ERRORS });
-			dispatch({ type: GET_USER_ISSUES, payload: res.data });
+			dispatch({ type: GET_USER_ISSUES, payload: res.data, id: userID });
 		})
 		.catch(err => {
 			console.log('get user issues err', err);
