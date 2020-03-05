@@ -3,18 +3,23 @@ import { connect } from 'react-redux';
 import { StyledNav, NavLogo, NavContainer, NavLink } from '../styles';
 
 function Navbar(props) {
+	const logOut = e => {
+		window.localStorage.clear();
+	};
+
 	return (
 		<>
 			<StyledNav>
 				<NavLogo>Co-Make</NavLogo>
 				<NavContainer>
-					<NavLink to='/' className='link'>
-						Home
-					</NavLink>
+					<NavLink to='/'>Home</NavLink>
 					{props.user.id && (
-						<NavLink to={`/dashboard/${props.user.id}`} className='link'>
-							Dashboard
-						</NavLink>
+						<>
+							<NavLink to={`/dashboard/${props.user.id}`}>Dashboard</NavLink>
+							<NavLink to='/' onClick={logOut}>
+								Log Out
+							</NavLink>
+						</>
 					)}
 				</NavContainer>
 			</StyledNav>

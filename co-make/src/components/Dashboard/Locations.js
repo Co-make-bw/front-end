@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addState, deleteState } from '../../actions/dashboardActions';
+import { MainContainer, LocationButton } from '../../styles';
 
 const Locations = props => {
 	const [editing, setEditing] = useState(false);
@@ -101,9 +102,11 @@ const Locations = props => {
 	// IF NO LOCATIONS, DISPLAY FORM
 	if (props.user.locations.length === 0) {
 		return (
-			<div>
+			<MainContainer>
 				<p>Add the states you care about and get started!</p>
-				{!editing && <button onClick={editStates}>Add States</button>}
+				{!editing && (
+					<LocationButton onClick={editStates}>Add States</LocationButton>
+				)}
 				{editing && (
 					<form onSubmit={handleSubmit}>
 						<select value={stateValue.value} onChange={handleChange}>
@@ -113,17 +116,17 @@ const Locations = props => {
 								</option>
 							))}
 						</select>
-						<button type='submit'>Add State</button>
-						<button onClick={editStates}>Cancel</button>
+						<LocationButton type='submit'>Add State</LocationButton>
+						<LocationButton onClick={editStates}>Cancel</LocationButton>
 					</form>
 				)}
-			</div>
+			</MainContainer>
 		);
 	}
 
 	// IF THERE ARE LOCATIONS, SHOW LOCATIONS AND FORM
 	return (
-		<div>
+		<MainContainer>
 			<p>Your States:</p>
 			<ul>
 				{props.user.locations.map(location => (
@@ -143,7 +146,9 @@ const Locations = props => {
 				))}
 			</ul>
 			<p>Add more States</p>
-			{!editing && <button onClick={editStates}>Add States</button>}
+			{!editing && (
+				<LocationButton onClick={editStates}>Add States</LocationButton>
+			)}
 			{editing && (
 				<form onSubmit={handleSubmit}>
 					<select value={stateValue.value} onChange={handleChange}>
@@ -153,11 +158,11 @@ const Locations = props => {
 							</option>
 						))}
 					</select>
-					<button type='submit'>Add State</button>
-					<button onClick={editStates}>Cancel</button>
+					<LocationButton type='submit'>Add State</LocationButton>
+					<LocationButton onClick={editStates}>Cancel</LocationButton>
 				</form>
 			)}
-		</div>
+		</MainContainer>
 	);
 };
 

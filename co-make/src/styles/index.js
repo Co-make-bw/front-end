@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
 
 // GLOBAL STYLES
-export const StyledError = styled.p`
-    color: white;
-    background-color: #FF4A48
-    font-size: 1rem;
-    border-radius: 5px;
-`;
 
 // NAVBAR STYLES
 export const StyledNav = styled.nav`
@@ -92,10 +86,16 @@ export const StyledInput = styled.input`
 	border-bottom: 1px solid green;
 	color: black;
 `;
+export const StyledError = styled.p`
+    color: white;
+    background-color: #FF4A48
+    font-size: 1rem;
+    border-radius: 5px;
+`;
 
 // PROFILE STYLES
 export const ProfileContainer = styled.div`
-	width: 250px;
+	width: 25%;
 	height: 100%;
 	z-index: -1;
 	position: fixed;
@@ -103,7 +103,11 @@ export const ProfileContainer = styled.div`
 	left: 0;
 	overflow-x: hidden;
 	padding-top: 12vh;
-	background-color: #5e6676;
+	background: linear-gradient(
+		275deg,
+		rgba(94, 102, 118, 1) 50%,
+		rgba(40, 44, 52, 1) 100%
+	);
 	border-right: 2px solid green;
 	color: white;
 	text-align: center;
@@ -133,4 +137,33 @@ export const ProfileEditLink = styled(Link)`
 	color: white;
 	background-color: #282c34;
 	text-align: center;
+`;
+
+// DASHBOARD CONTENT STYLES
+export const MainContainer = styled.div`
+	margin: 2rem auto 2rem 30%;
+	padding: 0.5rem;
+	width: 65%;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+`;
+export const LocationButton = styled.button`
+	width: 30%;
+	padding: 0.5rem 1.5rem;
+	margin: 1rem auto;
+	border: 1px solid green;
+	background-color: white;
+	color: black;
+	text-align: center;
+
+	&:hover {
+		cursor: pointer;
+		background-color: green;
+		color: white;
+		transition: background-color 1s, color 1s;
+	}
 `;
