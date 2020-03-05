@@ -7,6 +7,7 @@ const AddIssue = props => {
 	const { id } = useParams();
 	const history = useHistory();
 	const [stateValue, setStateValue] = useState({ value: '' });
+	const [issueStatus, setIssueStatus] = useState(false);
 	const [newIssue, setNewIssue] = useState({
 		title: '',
 		description: '',
@@ -90,9 +91,16 @@ const AddIssue = props => {
 				return 0;
 			}
 		});
-		const stateID = { state_id: Number(tempID) + 1 };
+		const stateID = Number(tempID) + 1;
 		const issueInfo = newIssue;
-		props.addNewIssue(stateID, issueInfo);
+		props.addNewIssue(stateID, issueInfo).then(() => {
+			if (!props.addIssueError) {
+				setIssueStatus(false);
+				history.push(`/dashboard/${userID}`);
+			} else {
+				setIssueStatus(true);
+			}
+		});
 	};
 
 	return (
@@ -140,8 +148,15 @@ const AddIssue = props => {
 
 				<button type='submit'>Submit</button>
 			</form>
+			{issueStatus && <p>Issue could not be created, try again.</p>}
 		</div>
 	);
 };
 
-export default connect(null, { addNewIssue })(AddIssue);
+const mapStateToProps = state => {
+	return {
+		addIssueError: state.issuesReducer.addIssueError
+	};
+};
+
+export default connect(mapStateToProps, { addNewIssue })(AddIssue);

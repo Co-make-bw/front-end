@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getUserIssues } from '../../actions/issuesActions';
 import UserIssue from './UserIssue';
 
 const UserIssues = props => {
 	const { id } = useParams();
-	const history = useHistory();
 
 	useEffect(() => {
 		props.getUserIssues(id);
@@ -20,10 +19,6 @@ const UserIssues = props => {
 			</>
 		);
 	}
-
-	const addIssueRoute = e => {
-		history.push(`/dashboard/${id}/add-issue`);
-	};
 
 	return (
 		<>
