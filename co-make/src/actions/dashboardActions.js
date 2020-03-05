@@ -51,12 +51,13 @@ export const deleteState = (stateID, userID) => dispatch => {
 			console.log('err from state delete', err);
 		});
 };
-export const updateProfile = userID => dispatch => {
+export const updateProfile = (userID, updatedProfile) => dispatch => {
 	return axiosWithAuth()
-		.put(`https://comake4.herokuapp.com/api/users/${userID}`)
+		.put(`https://comake4.herokuapp.com/api/users/${userID}`, updatedProfile)
 		.then(res => {
 			console.log('res from update profile', res);
 			dispatch({ type: RESET_ERROR });
+			dispatch({ type: UPDATE_PROFILE, payload: res.data });
 		})
 		.catch(err => {
 			console.log('err from update profile', err);

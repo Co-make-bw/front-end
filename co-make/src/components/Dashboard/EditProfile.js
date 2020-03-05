@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateProfile } from '../../actions/dashboardActions';
 
 const EditProfile = props => {
 	const initialState = {
-		username: props.user.username,
-		points: props.user.points,
-		about: props.user.about
+		username: '',
+		points: 0,
+		about: ''
 	};
 	const [editedProfile, setEditedProfile] = useState(initialState);
 	const [issueStatus, setIssueStatus] = useState(false);
 	const history = useHistory();
 	const { id } = useParams();
+
+	useEffect(() => {
+		setEditedProfile({
+			username: props.user.username,
+			points: props.user.points,
+			about: props.user.about
+		});
+	}, []);
 
 	const handleChange = e => {
 		e.preventDefault();
@@ -24,11 +32,12 @@ const EditProfile = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		const userID = id;
+		const updatedProfile = editedProfile;
 
-		props.updateProfile(userID).then(() => {
+		props.updateProfile(userID, updatedProfile).then(() => {
 			if (!props.updateError) {
 				setIssueStatus(false);
-				// history.push(`/dashboard/${userID}`);
+				history.push(`/dashboard/${userID}`);
 			} else {
 				setIssueStatus(true);
 			}
@@ -43,6 +52,7 @@ const EditProfile = props => {
 				<input
 					type='text'
 					id='username'
+					name='username'
 					onChange={handleChange}
 					value={editedProfile.username}
 					required
@@ -52,6 +62,7 @@ const EditProfile = props => {
 				<input
 					type='textarea'
 					id='aboutme'
+					name='about'
 					onChange={handleChange}
 					value={editedProfile.about}
 					required

@@ -4,7 +4,8 @@ import {
 	DELETE_STATE,
 	GET_STATES,
 	UPDATE_ERROR,
-	RESET_ERROR
+	RESET_ERROR,
+	UPDATE_PROFILE
 } from '../actions/dashboardActions';
 
 const initialState = {
@@ -58,6 +59,15 @@ export const dashboardReducer = (state = initialState, action) => {
 			} else {
 				return state;
 			}
+		case UPDATE_PROFILE:
+			return {
+				...state,
+				user: {
+					...state.user,
+					username: action.payload.username,
+					about: action.payload.about
+				}
+			};
 		case UPDATE_ERROR:
 			return {
 				...state,
