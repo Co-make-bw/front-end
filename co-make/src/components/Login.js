@@ -1,62 +1,55 @@
-import React, { useState} from "react";
+import React from "react";
 import LoginBox from "./LoginBox";
 import Register from "./Register";
 import LoggedInState from "./LoggedInState";
-import Tagline from './Tagline';
 import "./Default.css";
 
-function Login() {
-
-    const [loginBox, setLoginBox] = useState(true);
-    const [registerBox, setRegisterBox] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+function Login(props) {
 
     function showLogin(e) {
         e.preventDefault();
-        setLoginBox(true);
-        setRegisterBox(false);
+        props.setLoginBox(true);
+        props.setRegisterBox(false);
     }
 
     function showRegistration(e) {
         e.preventDefault();
-        setLoginBox(false);
-        setRegisterBox(true);
+        props.setLoginBox(false);
+        props.setRegisterBox(true);
     }
 
     return (
         <div className="root-container">
-
-            <Tagline />
             
             <div className="box-controller">
                 <div className="controller">
                     <div 
                     onClick={showLogin} 
-                    className={"header" + (loginBox ? " selected" : "")}
+                    className={"header" + (props.loginBox ? " selected" : "")}
                     >Login</div>
                 </div>
                 <div className="controller">
                     <div 
                     onClick={showRegistration} 
-                    className={"header" + (registerBox ? " selected" : "")}
+                    className={"header" + (props.registerBox ? " selected" : "")}
                     >Register</div>
                 </div>
             </div>
             <div className="box-container">
                 <div className="controller">
 
-                    { loginBox && 
+                    { props.loginBox && 
                     <LoginBox
-                    setLogin = { setIsLoggedIn }/> }
+                    setLogin = { props.setIsLoggedIn }/> }
 
-                    { registerBox && 
+                    { props.registerBox && 
                     <Register
-                    shRegistration={ showRegistration }
+                    shRegistration={ props.showRegistration }
                     />}
                     
                 </div>
             </div>
-            <div style={{marginBottom: 30 }}><LoggedInState loggedInStatus={isLoggedIn} /></div>
+            <div style={{marginBottom: 30 }}><LoggedInState loggedInStatus={props.isLoggedIn} /></div>
         </div>
     )
     

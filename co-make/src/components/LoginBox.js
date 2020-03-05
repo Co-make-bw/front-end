@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import './Box.css';
 
 function LoginBox(props) {
-	// const history = useHistory();
-	console.log("props: ", props); 
+	const history = useHistory();
 
 	return (
 		<div className='inner-container'>
@@ -28,28 +27,47 @@ function LoginBox(props) {
 						onSubmit={( values ) => {
 							let submitValues = values;
 							axios
-								.post(
-									'https://cors-anywhere.herokuapp.com/https://eddiemadrigal.net/users/users.json',
-									submitValues
+								.get(
+									'https://cors-anywhere.herokuapp.com/https://eddiemadrigal.net/users/users.json', submitValues
 								)
 								.then(res => {
 
-									console.log('response for login:', res);
 									const myData = [];
-									res.data.forEach(({username, password, email }) => {
+									res.data.forEach(({id, fname, lname, username, password, email }) => {
 										myData.push({ 
+											id: `${id}`,
+											fname: `${fname}`,
+											lname: `${lname}`,
 											username: `${username}`, 
 											password: `${password}`,
 											email: `${email}` });
 									});
 
-									console.log('myData Array: ', myData);
+									let userResults = myData.filter( function(user) {
+										return user["username"] === values.username;
+									});
 
-									// props.setLogin(true);
-									// window.localStorage.setItem('id', res.data[0].id);
-									// let currentId = window.localStorage.getItem('id');
-									// console.log(currentId);
-									// history.push(`/dashboard/${res.data[0].id}`);
+									if (userResults.length > 0) {
+										console.log("User found");
+										let passwordResults = userResults.filter( function(user) {
+											return user["password"] === values.password;
+										});
+										if (passwordResults.length > 0) {
+											console.log("Password is good");
+											props.setLogin(true);
+											console.log("ID: ", passwordResults[0]["id"]);
+											window.sessionStorage.setItem('id', passwordResults[0]["id"]);
+											let currentId = window.sessionStorage.getItem('id');
+											console.log(currentId);
+											history.push(`/dashboard/${currentId}`);
+										} else {
+											console.log("Password not good.")
+										}
+									} else {
+										console.log("No user found");
+									}
+
+									
 								})
 								.catch(err => {
 									console.log('error from user login post', err);

@@ -8,6 +8,8 @@ label {
     text-align: left;
     line-height: 16px;
     margin-bottom: 10px;
+    color: #333;
+    font-size: 0.7rem;
 }
 
 input {
@@ -17,6 +19,7 @@ input {
     background: transparent;
     border-bottom: 1px solid black;
     font-size: 1.6rem;
+    text-align: center;
 }
 
 .input-group {

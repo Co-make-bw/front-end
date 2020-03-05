@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import Contact from './Contact';
-import Login from './Login';
+import LogStatusLink from './LogStatusLink';
+import LogStatusRoute from './LogStatusRoute';
 import DashboardDefault from './Dashboard/Default';
 import './Navbar.css';
 
 function Navbar() {
+
 
 	return (
 		<Router>
@@ -24,9 +26,7 @@ function Navbar() {
 					<Link to='/contact' className='link'>
 						Contact
 					</Link>
-					<Link to='/login' className='link'>
-						Login
-					</Link>
+					<LogStatusLink />
 				</div>
 			</nav>
 
@@ -37,9 +37,7 @@ function Navbar() {
 			<Route path="/contact">
 			  <Contact />
 			</Route>
-			<Route path="/login">
-			  <Login />
-			</Route>
+			
 			<Route path="/dashboard/:id">
 			  <DashboardDefault />
 			</Route>
