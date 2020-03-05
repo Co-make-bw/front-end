@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addNewUser } from '../actions/onboardingActions';
-import './Box.css';
+import { StyledForm, StyledInput, StyledError, StyledButton } from '../styles';
 
 function Register(props) {
 	const [newUser, setNewUser] = useState({
@@ -30,31 +30,32 @@ function Register(props) {
 	};
 
 	return (
-		<div className='inner-container'>
-			<div className='box'>
-				<div className='input-group'>
-					<label htmlFor='username'>User Name</label>
+		<div>
+			<StyledForm onSubmit={handleSubmit}>
+				<StyledInput
+					type='text'
+					name='username'
+					placeholder='Username'
+					autoComplete='off'
+					onChange={handleChange}
+					value={newUser.username}
+				/>
 
-					<input
-						type='text'
-						name='username'
-						placeholder='User Name'
-						autoComplete='off'
-						onChange={handleChange}
-						value={newUser.username}
-					/>
+				<StyledInput
+					type='password'
+					name='password'
+					placeholder='Password'
+					onChange={handleChange}
+					value={newUser.password}
+				/>
 
-					<label htmlFor='password'>Password</label>
-					<input type='password' name='password' onChange={handleChange} />
-
-					<button onClick={handleSubmit} name='submitRegister'>
-						Register
-					</button>
-				</div>
-				{props.registerError && (
-					<p>User already exists, try a different username</p>
-				)}
-			</div>
+				<StyledButton type='submit' name='submitRegister'>
+					Register
+				</StyledButton>
+			</StyledForm>
+			{props.registerError && (
+				<StyledError>User already exists, try a different username</StyledError>
+			)}
 		</div>
 	);
 }

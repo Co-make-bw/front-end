@@ -1,25 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import { StyledNav, NavLogo, NavContainer, NavLink } from '../styles';
 
 function Navbar(props) {
 	return (
-		<div className='App'>
-			<nav>
-				<h2>Co-Make</h2>
-				<div className='nav-links'>
-					<Link to='/' className='link'>
+		<>
+			<StyledNav>
+				<NavLogo>Co-Make</NavLogo>
+				<NavContainer>
+					<NavLink to='/' className='link'>
 						Home
-					</Link>
+					</NavLink>
 					{props.user.id && (
-						<Link to={`/dashboard/${props.user.id}`} className='link'>
+						<NavLink to={`/dashboard/${props.user.id}`} className='link'>
 							Dashboard
-						</Link>
+						</NavLink>
 					)}
-				</div>
-			</nav>
-		</div>
+				</NavContainer>
+			</StyledNav>
+		</>
 	);
 }
 
