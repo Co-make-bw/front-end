@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getUser } from '../../actions/dashboardActions';
+import {
+	ProfileContainer,
+	ProfileTitle,
+	ProfileGroup,
+	ProfileEditLink
+} from '../../styles';
 
 const Profile = props => {
 	const { id } = useParams();
@@ -15,15 +21,20 @@ const Profile = props => {
 	}
 
 	return (
-		<div>
-			<h3>Your Co-Make</h3>
-			<div>
+		<ProfileContainer>
+			<ProfileTitle>Your Co-Make</ProfileTitle>
+			<ProfileGroup>
 				<h3>{props.user.username}</h3>
 				<p>Points: {props.user.points}</p>
-				<p>About Me: {props.user.about}</p>
-				<Link to={`/dashboard/${id}/edit-profile`}>🛠</Link>
-			</div>
-		</div>
+				<div>
+					<p style={{ borderBottom: '1px solid black' }}>About Me</p>
+					<p>{props.user.about}</p>
+				</div>
+				<ProfileEditLink to={`/dashboard/${id}/edit-profile`}>
+					🛠
+				</ProfileEditLink>
+			</ProfileGroup>
+		</ProfileContainer>
 	);
 };
 
