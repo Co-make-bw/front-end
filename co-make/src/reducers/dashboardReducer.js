@@ -2,7 +2,9 @@ import {
 	GET_USER,
 	ADD_STATE,
 	DELETE_STATE,
-	GET_STATES
+	GET_STATES,
+	UPDATE_ERROR,
+	RESET_ERROR
 } from '../actions/dashboardActions';
 
 const initialState = {
@@ -12,7 +14,8 @@ const initialState = {
 		locations: [],
 		about: '',
 		points: 0
-	}
+	},
+	updateError: false
 };
 
 export const dashboardReducer = (state = initialState, action) => {
@@ -55,6 +58,16 @@ export const dashboardReducer = (state = initialState, action) => {
 			} else {
 				return state;
 			}
+		case UPDATE_ERROR:
+			return {
+				...state,
+				updateError: true
+			};
+		case RESET_ERROR:
+			return {
+				...state,
+				updateError: false
+			};
 		default:
 			return state;
 	}

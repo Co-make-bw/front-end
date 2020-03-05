@@ -6,6 +6,7 @@ import Default from './components/Default';
 import Dashboard from './components/Dashboard/Dashboard.js';
 import LocalIssues from './components/Issues/LocalIssues';
 import AddIssue from './components/Issues/AddIssue';
+import EditProfile from './components/Dashboard/EditProfile';
 import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
 			<Nav />
 			<Route exact path='/' component={Default} />
 			<PrivateRoute exact path='/dashboard/:id' component={Dashboard} />
+			<PrivateRoute
+				path='/dashboard/:id/edit-profile'
+				component={EditProfile}
+			/>
 			<PrivateRoute path='/dashboard/:id/add-issue' component={AddIssue} />
 			<PrivateRoute path='/state/:stateid' component={LocalIssues} />
 		</div>

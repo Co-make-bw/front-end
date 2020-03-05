@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addNewUser } from '../actions/onboardingActions';
 import './Box.css';
@@ -9,7 +8,6 @@ function Register(props) {
 		username: '',
 		password: ''
 	});
-	const history = useHistory();
 
 	const handleChange = e => {
 		setNewUser({
