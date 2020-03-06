@@ -1,6 +1,11 @@
-import React from "react";
+import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import "./Box.css";
+import CheckEmail from './Validation/CheckEmail';
+import CheckPassword from './Validation/CheckPassword';
+import CheckUsername from './Validation/CheckUsername';
+import ConfirmEmail from './Validation/ConfirmEmail';
+import CheckTOS from './Validation/CheckTOS';
+import './Box.css';
 
 function Register(props) {
 
@@ -32,6 +37,8 @@ function Register(props) {
                             errors.username = 'Required';
                         } else if (values.username.length < 5) {
                             errors.username = 'Username must be at least 5 characters in length';
+                        } else if (values.username.length > 15) {
+                            errors.username = 'Username must be no more than 15 characters in length';
                         }
 
                         if (!values.password) {
@@ -73,23 +80,24 @@ function Register(props) {
                                 
                                 <label htmlFor="username">Username<span className="star">*</span></label>
                                 <Field placeholder="Username" autoFocus type="text" name="username" autoComplete="off" onChange = {handleChange} />
-                                <ErrorMessage name="username" component="div"/>
+                                <ErrorMessage name="username" component={ CheckUsername } />
                                 
                                 <label htmlFor="email">Email<span className="star">*</span></label>
                                 <Field placeholder="Email" type="email" name="email" autoComplete="off"/>
-                                <ErrorMessage name="email" component="div"/>
+                                <ErrorMessage name="email" component={ CheckEmail }/>
                                 
                                 <label htmlFor="password">Password<span className="star">*</span></label>
                                 <Field placeholder="Password" type="password" name="password" autoComplete="off"/>
-                                <ErrorMessage name="password" component="div"/>
+                                <ErrorMessage name="password" component={ CheckPassword } />
                                 
                                 <label htmlFor="password2">Confirm Password<span className="star">*</span></label>
                                 <Field placeholder="Confirm Password" type="password" name="password2" autoComplete="off"/>
-                                <ErrorMessage name="password2" component="div"/>
+                                <ErrorMessage name="password2" component={ ConfirmEmail }/>
+
                                 <div className="tos">
                                     <Field type="checkbox" name="tos"/>
                                     <label htmlFor="tos">Accept Terms of Service<span className="star">*</span></label>
-                                    <ErrorMessage name="tos" component="div"/>
+                                    <ErrorMessage name="tos" component={ CheckTOS }/>
                                 </div>
                                 
                                 <button type="submit" disabled={isSubmitting}>

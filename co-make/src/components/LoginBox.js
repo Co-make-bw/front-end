@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import DashboardDefault from './Dashboard/Default';
+import CheckUsername from "./Validation/CheckUsername";
+import CheckPassword from "./Validation/CheckPassword";
 import './Box.css';
 
 function LoginBox(props) {
@@ -92,9 +94,9 @@ function LoginBox(props) {
 									placeholder='Username'
 									autoFocus
 								/>
-								<ErrorMessage name='username' component='div' />
+								<ErrorMessage name='username' component={ CheckUsername } />
 								<Field type='password' name='password' placeholder='Password' />
-								<ErrorMessage name='password' component='div' />
+								<ErrorMessage name='password' component={ CheckPassword } />
 								<button type='submit' disabled={isSubmitting}>
 									Submit
 								</button>

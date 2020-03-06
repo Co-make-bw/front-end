@@ -1,7 +1,7 @@
 import React from "react";
 import LoginBox from "./LoginBox";
 import Register from "./Register";
-import Tagline from './Tagline';
+import Tagline from "./Tagline";
 import "./Default.css";
 
 function Login(props) {
