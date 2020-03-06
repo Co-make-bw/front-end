@@ -8,7 +8,9 @@ import {
 	MainText,
 	StateList,
 	StateItem,
-	StateDelete
+	StateDelete,
+	StyledForm,
+	StyledDropdown
 } from '../../styles';
 
 const Locations = props => {
@@ -115,17 +117,17 @@ const Locations = props => {
 					<LocationButton onClick={editStates}>Add States</LocationButton>
 				)}
 				{editing && (
-					<form onSubmit={handleSubmit}>
-						<select value={stateValue.value} onChange={handleChange}>
+					<StyledForm onSubmit={handleSubmit}>
+						<StyledDropdown value={stateValue.value} onChange={handleChange}>
 							{usStates.map((item, index) => (
 								<option key={index} name={index + 1} value={item}>
 									{item}
 								</option>
 							))}
-						</select>
+						</StyledDropdown>
 						<LocationButton type='submit'>Add State</LocationButton>
 						<LocationButton onClick={editStates}>Cancel</LocationButton>
-					</form>
+					</StyledForm>
 				)}
 			</MainContainer>
 		);
@@ -156,17 +158,17 @@ const Locations = props => {
 				<LocationButton onClick={editStates}>Add States</LocationButton>
 			)}
 			{editing && (
-				<form onSubmit={handleSubmit}>
-					<select value={stateValue.value} onChange={handleChange}>
+				<StyledForm onSubmit={handleSubmit}>
+					<StyledDropdown value={stateValue.value} onChange={handleChange}>
 						{usStates.map((item, index) => (
 							<option key={index} name={index + 1} value={item}>
 								{item}
 							</option>
 						))}
-					</select>
+					</StyledDropdown>
 					<LocationButton type='submit'>Add State</LocationButton>
 					<LocationButton onClick={editStates}>Cancel</LocationButton>
-				</form>
+				</StyledForm>
 			)}
 		</MainContainer>
 	);

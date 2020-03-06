@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getUserIssues } from '../../actions/issuesActions';
 import UserIssue from './UserIssue';
+import { MainContainer, MainText, IssueLink } from '../../styles';
 
 const UserIssues = props => {
 	const { id } = useParams();
@@ -13,23 +14,23 @@ const UserIssues = props => {
 
 	if (props.userError || props.userIssues.length === 0) {
 		return (
-			<>
-				<h3>You haven't drawn attention to any issues</h3>
-				<Link to={`/dashboard/${id}/add-issue`}>Add a New Issue</Link>
-			</>
+			<MainContainer>
+				<MainText>You haven't drawn attention to any issues</MainText>
+				<IssueLink to={`/dashboard/${id}/add-issue`}>Add a New Issue</IssueLink>
+			</MainContainer>
 		);
 	}
 
 	return (
-		<>
-			<h3>My Posts</h3>
+		<MainContainer>
+			<MainText>My Posts</MainText>
 			<div className='card-layout'>
 				{props.userIssues.map(issue => (
 					<UserIssue key={issue.id} userID={id} issue={issue} />
 				))}
 			</div>
-			<Link to={`/dashboard/${id}/add-issue`}>Add a New Issue</Link>
-		</>
+			<IssueLink to={`/dashboard/${id}/add-issue`}>Add a New Issue</IssueLink>
+		</MainContainer>
 	);
 };
 

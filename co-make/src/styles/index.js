@@ -87,6 +87,12 @@ export const StyledInput = styled.input`
 	border-bottom: 1px solid green;
 	color: black;
 `;
+export const StyledDropdown = styled.select`
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid black;
+	color: black;
+`;
 export const StyledError = styled.p`
 	color: white;
 	background-color: #ff4a48;
@@ -138,6 +144,11 @@ export const ProfileEditLink = styled(Link)`
 	color: white;
 	background-color: #282c34;
 	text-align: center;
+
+	&:hover {
+		cursor: pointer;
+		border: 1px solid green;
+	}
 `;
 
 // DASHBOARD CONTENT STYLES
@@ -153,9 +164,9 @@ export const MainContainer = styled.div`
 	justify-content: space-between;
 `;
 export const LocationButton = styled.button`
-	width: 30%;
+	width: 60%;
 	padding: 0.5rem 1.5rem;
-	margin: 1rem auto;
+	margin: 1rem auto 0 auto;
 	border: 1px solid green;
 	border-radius: 3px;
 	background-color: white;
@@ -196,5 +207,14 @@ export const StateDelete = styled.span`
 		color: white;
 		background-color: #ff4a48;
 		transition: color 0.5s, background-color 0.5s;
+	}
+`;
+export const IssueLink = styled(Link)`
+	text-decoration: none;
+	font-size: 1rem;
+	color: green;
+
+	&:hover {
+		cursor: pointer;
 	}
 `;
