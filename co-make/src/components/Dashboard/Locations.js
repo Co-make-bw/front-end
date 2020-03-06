@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addState, deleteState } from '../../actions/dashboardActions';
 import {
-	MainContainer,
+	LocationContainer,
 	LocationButton,
 	MainText,
 	StateList,
@@ -111,7 +111,7 @@ const Locations = props => {
 	// IF NO LOCATIONS, DISPLAY FORM
 	if (props.user.locations.length === 0) {
 		return (
-			<MainContainer>
+			<LocationContainer>
 				<MainText>Add the states you care about and get started!</MainText>
 				{!editing && (
 					<LocationButton onClick={editStates}>Add States</LocationButton>
@@ -129,13 +129,13 @@ const Locations = props => {
 						<LocationButton onClick={editStates}>Cancel</LocationButton>
 					</StyledForm>
 				)}
-			</MainContainer>
+			</LocationContainer>
 		);
 	}
 
 	// IF THERE ARE LOCATIONS, SHOW LOCATIONS AND FORM
 	return (
-		<MainContainer>
+		<LocationContainer>
 			<MainText>Your States:</MainText>
 			<StateList>
 				{props.user.locations.map(location => (
@@ -170,7 +170,7 @@ const Locations = props => {
 					<LocationButton onClick={editStates}>Cancel</LocationButton>
 				</StyledForm>
 			)}
-		</MainContainer>
+		</LocationContainer>
 	);
 };
 

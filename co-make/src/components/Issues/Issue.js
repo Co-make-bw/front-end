@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addUpvote, removeUpvote } from '../../actions/issuesActions';
+import { LocalIssue } from '../../styles';
 
 const Issue = props => {
 	const [upvoteToggle, setUpvoteToggle] = useState(false);
@@ -43,20 +44,18 @@ const Issue = props => {
 	}, []);
 
 	return (
-		<div className='card-container'>
-			<div className='card'>
-				<h3>Issue: {props.issue.title}</h3>
-				<p>Posted by: {props.issue.posted_by}</p>
-				<p>Upvotes: {props.issue.upvotes}</p>
-				<p>Location: {props.issue.location}</p>
-				<p>Description: {props.issue.description}</p>
-				{upvoteToggle ? (
-					<button onClick={handleUpvote}>Unvote</button>
-				) : (
-					<button onClick={handleUpvote}>Upvote</button>
-				)}
-			</div>
-		</div>
+		<LocalIssue>
+			<h3>Issue: {props.issue.title}</h3>
+			<p>Posted by: {props.issue.posted_by}</p>
+			<p>Upvotes: {props.issue.upvotes}</p>
+			<p>Location: {props.issue.location}</p>
+			<p>Description: {props.issue.description}</p>
+			{upvoteToggle ? (
+				<button onClick={handleUpvote}>Unvote</button>
+			) : (
+				<button onClick={handleUpvote}>Upvote</button>
+			)}
+		</LocalIssue>
 	);
 };
 

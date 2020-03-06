@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import LoginBox from './LoginBox';
 import Register from './Register';
 
@@ -20,7 +21,7 @@ function Default() {
 
 	return (
 		<div className='root-container'>
-			<div style={{ marginBottom: 30 }}></div>
+			<div style={{ marginBottom: 100 }}></div>
 			<div className='box-controller'>
 				<div className='controller'>
 					<div
@@ -52,4 +53,4 @@ function Default() {
 	);
 }
 
-export default Default;
+export default connect(null, {})(Default);

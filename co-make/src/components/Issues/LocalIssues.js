@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getStateIssues } from '../../actions/issuesActions';
 import Issue from './Issue';
+import { LocalContainer } from '../../styles';
 
 const LocalIssues = props => {
 	const { stateid } = useParams();
@@ -16,11 +17,11 @@ const LocalIssues = props => {
 	}
 
 	return (
-		<div className='card-layout'>
+		<LocalContainer>
 			{props.issues.map(issue => (
 				<Issue key={issue.id} issue={issue} stateID={stateid} />
 			))}
-		</div>
+		</LocalContainer>
 	);
 };
 

@@ -16,6 +16,7 @@ function App() {
 			<Route exact path='/' component={Default} />
 			<PrivateRoute exact path='/dashboard/:id' component={Dashboard} />
 			<PrivateRoute
+				exact
 				path='/dashboard/:id/edit-profile'
 				component={EditProfile}
 			/>

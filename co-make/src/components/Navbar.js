@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { StyledNav, NavLogo, NavContainer, NavLink } from '../styles';
 
@@ -6,6 +6,8 @@ function Navbar(props) {
 	const logOut = e => {
 		window.localStorage.clear();
 	};
+
+	useEffect(() => {}, [props.user]);
 
 	return (
 		<>

@@ -36,13 +36,12 @@ function LoginBox(props) {
 					axios
 						.post('https://comake4.herokuapp.com/api/auth/login', submitValues)
 						.then(res => {
-							console.log('response for login:', res);
 							window.localStorage.setItem('token', res.data.token);
 							setLoginError(false);
 							setTimeout(function() {
 								history.push(`/dashboard/${res.data.user_id}`);
 								setLoading(false);
-							}, 3000);
+							}, 4000);
 						})
 						.catch(err => {
 							console.log('error from user login post', err);

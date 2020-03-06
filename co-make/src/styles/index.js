@@ -6,6 +6,9 @@ import { Form, Field } from 'formik';
 
 // NAVBAR STYLES
 export const StyledNav = styled.nav`
+	width: 100%;
+	top: 0;
+	left: 0;
 	background-color: #282c34;
 	display: flex;
 	justify-content: space-around;
@@ -13,7 +16,8 @@ export const StyledNav = styled.nav`
 	min-height: 10vh;
 	color: white;
 	border-bottom: 2px solid green;
-	z-index: 2;
+	position: fixed;
+	z-index: 99;
 `;
 export const NavLogo = styled.h3`
 	font-size: 2rem;
@@ -112,8 +116,8 @@ export const StyledError = styled.p`
 export const ProfileContainer = styled.div`
 	width: 25%;
 	height: 100%;
-	z-index: -1;
 	position: fixed;
+	z-index: 1;
 	top: 0;
 	left: 0;
 	overflow-x: hidden;
@@ -137,12 +141,14 @@ export const ProfileTitle = styled.h3`
 	border-bottom: 1px solid black;
 `;
 export const ProfileGroup = styled.div`
+	width: 80%;
 	min-height: 20vh;
 	font-size: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	z-index: 2;
 `;
 export const ProfileEditLink = styled(Link)`
 	width: 25px;
@@ -160,6 +166,17 @@ export const ProfileEditLink = styled(Link)`
 `;
 
 // DASHBOARD CONTENT STYLES
+export const LocationContainer = styled.div`
+	margin: 10rem auto 2rem 30%;
+	padding: 0.5rem;
+	width: 65%;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+`;
 export const MainContainer = styled.div`
 	margin: 2rem auto 2rem 30%;
 	padding: 0.5rem;
@@ -249,7 +266,7 @@ export const StyledCard = styled.div`
 
 // SEPARATE PAGE STYLES
 export const AddIssueContainer = styled.div`
-	margin: 2rem auto;
+	margin: 10rem auto;
 	padding: 0.5rem;
 	width: 400px;
 	border: 1px solid black;
@@ -258,4 +275,28 @@ export const AddIssueContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
+`;
+export const LocalContainer = styled.div`
+	margin: 10rem auto;
+	padding: 0.5rem;
+	width: 80%;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: space-between;
+`;
+export const LocalIssue = styled.div`
+	width: 30%;
+	padding: 0.5rem;
+	margin: 1rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border-left: 5px solid #282c34;
+	border-radius: 3px;
+	background-color: #d9dee7;
 `;

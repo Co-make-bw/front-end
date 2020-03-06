@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateProfile } from '../../actions/dashboardActions';
+import {
+	AddIssueContainer,
+	StyledForm,
+	StyledButton,
+	StyledInput,
+	StyledTextArea
+} from '../../styles';
 
 const EditProfile = props => {
 	const initialState = {
@@ -45,33 +52,33 @@ const EditProfile = props => {
 	};
 
 	return (
-		<div>
-			<h3>Edit Profile</h3>
-			<form>
-				<label htmlFor='username'>Username</label>
-				<input
+		<AddIssueContainer>
+			<h1>Edit Profile</h1>
+			<StyledForm>
+				<StyledInput
 					type='text'
 					id='username'
 					name='username'
+					placeholder='Username'
 					onChange={handleChange}
 					value={editedProfile.username}
 					required
 				/>
 
-				<label htmlFor='aboutme'>About Me</label>
-				<input
+				<StyledTextArea
 					type='textarea'
 					id='aboutme'
 					name='about'
+					placeholder='About me'
 					onChange={handleChange}
 					value={editedProfile.about}
 					required
 				/>
 
-				<button onClick={handleSubmit}>Update</button>
-			</form>
+				<StyledButton onClick={handleSubmit}>Update</StyledButton>
+			</StyledForm>
 			{issueStatus && <p>Profile could not be updated, try again.</p>}
-		</div>
+		</AddIssueContainer>
 	);
 };
 
