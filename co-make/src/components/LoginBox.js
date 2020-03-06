@@ -21,17 +21,30 @@ function LoginBox(props) {
 						}}
 						validate={values => {
 
-							const errors = {};
+						const errors = {};
+
 							if (!values.username) {
 								errors.username = 'Required';
 							} else if (values.username.length < 5) {
 								errors.username = 'Username must be at least 5 characters in length';
+							} else if (values.username.length > 15) {
+								errors.username = 'Username must be no more than 15 characters in length';
 							}
 
 							if (!values.password) {
-								errors.password = 'Required';
+                            errors.password = 'Required';
 							} else if (values.password.length < 6) {
 								errors.password = '6 or more characters is required';
+							} else if (values.password.length > 15) {
+								errors.password = 'Too long';
+							} else if (values.password.search(/\d/) === -1) {
+								errors.password = 'You must include a number';
+							} else if (values.password.search(/[A-Z]/) === -1) {
+								errors.password = 'You must include an upper case letter';
+							} else if (values.password.search(/[a-z]/) === -1) {
+								errors.password = 'You must include an lower case letter';
+							} else if (values.password.search(/[!@#$]/) === -1) {
+								errors.password = 'You must use at least one special character: ! @ # $';
 							}
 
 							return errors;
@@ -61,6 +74,7 @@ function LoginBox(props) {
 
 									if (userResults.length > 0) {
 										console.log("User found");
+										console.log("user results: ", userResults);
 										let passwordResults = userResults.filter( function(user) {
 											return user["password"] === values.password;
 										});

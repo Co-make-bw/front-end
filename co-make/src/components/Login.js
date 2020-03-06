@@ -22,6 +22,7 @@ function Login(props) {
         <div className="root-container">
             <h1>Login Page</h1>
             <Tagline />
+            <p>Password123#</p>
             <div className="box-controller">
                 <div className="controller">
                     <div 
