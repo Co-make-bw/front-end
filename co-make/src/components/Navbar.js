@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { StyledNav, NavLogo, NavContainer, NavLink } from '../styles';
 
 function Navbar(props) {
+	const [ifToken, setIfToken] = useState(false);
+
+	useEffect(() => {
+		const token = window.localStorage.getItem('token');
+		if (token) {
+			setIfToken(true);
+		} else {
+			setIfToken(false);
+		}
+	}, []);
+
 	const logOut = e => {
 		window.localStorage.clear();
 	};
-
-	useEffect(() => {}, [props.user]);
 
 	return (
 		<>
@@ -15,7 +24,7 @@ function Navbar(props) {
 				<NavLogo>Co-Make</NavLogo>
 				<NavContainer>
 					<NavLink to='/'>Home</NavLink>
-					{props.user.id && (
+					{ifToken && (
 						<>
 							<NavLink to={`/dashboard/${props.user.id}`}>Dashboard</NavLink>
 							<NavLink to='/' onClick={logOut}>
@@ -31,9 +40,7 @@ function Navbar(props) {
 
 const mapStateToProps = state => {
 	return {
-		user: {
-			id: state.dashboardReducer.user.id
-		}
+		user: state.dashboardReducer.user
 	};
 };
 

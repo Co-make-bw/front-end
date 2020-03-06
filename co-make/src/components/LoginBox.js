@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { loginUser } from '../actions/onboardingActions';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
@@ -33,22 +33,9 @@ function LoginBox(props) {
 					let submitValues = values;
 					setSubmitting(true);
 					setLoading(true);
-					axios
-						.post('https://comake4.herokuapp.com/api/auth/login', submitValues)
-						.then(res => {
-							window.localStorage.setItem('token', res.data.token);
-							setLoginError(false);
-							setTimeout(function() {
-								history.push(`/dashboard/${res.data.user_id}`);
-								setLoading(false);
-							}, 4000);
-						})
-						.catch(err => {
-							console.log('error from user login post', err);
-							setLoginError(true);
-							setSubmitting(false);
-							setLoading(false);
-						});
+					props.loginUser(submitValues).then(res => {
+						history.push(`/dashboard/${res.data.user_id}`);
+					});
 				}}
 			>
 				{({ isSubmitting }) => (
@@ -80,4 +67,4 @@ function LoginBox(props) {
 	);
 }
 
-export default connect(null, {})(LoginBox);
+export default connect(null, { loginUser })(LoginBox);
