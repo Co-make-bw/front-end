@@ -87,6 +87,14 @@ export const StyledInput = styled.input`
 	border-bottom: 1px solid green;
 	color: black;
 `;
+export const StyledTextArea = styled.textarea`
+	width: 100%;
+	height: 100px;
+	margin-top: 2rem;
+	padding: 0.5rem;
+	border: 1px solid green;
+	color: black;
+`;
 export const StyledDropdown = styled.select`
 	width: 100%;
 	padding: 0.5rem;
@@ -217,4 +225,37 @@ export const IssueLink = styled(Link)`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+export const CardContainer = styled.div`
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: space-between;
+	margin: 2rem auto;
+`;
+export const StyledCard = styled.div`
+	width: 30%;
+	padding: 0.5rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border-left: 5px solid #282c34;
+	border-radius: 3px;
+	background-color: #d9dee7;
+`;
+
+// SEPARATE PAGE STYLES
+export const AddIssueContainer = styled.div`
+	margin: 2rem auto;
+	padding: 0.5rem;
+	width: 400px;
+	border: 1px solid black;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 `;

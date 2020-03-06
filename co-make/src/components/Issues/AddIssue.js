@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addNewIssue } from '../../actions/issuesActions';
+import {
+	AddIssueContainer,
+	StyledDropdown,
+	StyledInput,
+	StyledForm,
+	StyledButton,
+	StyledTextArea
+} from '../../styles';
 
 const AddIssue = props => {
 	const { id } = useParams();
@@ -104,52 +112,56 @@ const AddIssue = props => {
 	};
 
 	return (
-		<div>
+		<AddIssueContainer>
 			<h1>Add an Issue</h1>
-			<form onSubmit={handleSubmit}>
+			<StyledForm onSubmit={handleSubmit}>
 				<label htmlFor='us-state'>Select a state</label>
-				<select id='us-state' value={stateValue.value} onChange={handleChange}>
+				<StyledDropdown
+					id='us-state'
+					value={stateValue.value}
+					onChange={handleChange}
+				>
 					{usStates.map((item, index) => (
 						<option key={index} name={index + 1} value={item}>
 							{item}
 						</option>
 					))}
-				</select>
+				</StyledDropdown>
 
-				<label htmlFor='title'>Issue Title</label>
-				<input
+				<StyledInput
 					type='text'
 					id='title'
 					name='title'
 					value={newIssue.title}
 					onChange={handleTextInputs}
+					placeholder='Issue Title'
 					required
 				/>
 
-				<label htmlFor='location'>Issue Location</label>
-				<input
+				<StyledInput
 					type='text'
 					id='location'
 					name='location'
 					value={newIssue.location}
 					onChange={handleTextInputs}
+					placeholder='Issue Location'
 					required
 				/>
 
-				<label htmlFor='description'>Issue Description</label>
-				<input
+				<StyledTextArea
 					type='textarea'
 					id='description'
 					name='description'
 					value={newIssue.description}
 					onChange={handleTextInputs}
+					placeholder='Issue Description'
 					required
 				/>
 
-				<button type='submit'>Submit</button>
-			</form>
+				<StyledButton type='submit'>Submit</StyledButton>
+			</StyledForm>
 			{issueStatus && <p>Issue could not be created, try again.</p>}
-		</div>
+		</AddIssueContainer>
 	);
 };
 

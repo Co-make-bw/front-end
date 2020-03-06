@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteIssue } from '../../actions/issuesActions';
+import { StyledCard, LocationButton } from '../../styles';
 
 const UserIssue = props => {
 	const history = useHistory();
@@ -15,16 +16,16 @@ const UserIssue = props => {
 	};
 
 	return (
-		<div className='card-container'>
-			<div className='card'>
-				<h3>Issue: {props.issue.title}</h3>
-				<p>Upvotes: {props.issue.upvotes}</p>
-				<p>Location: {props.issue.location}</p>
-				<p>Description: {props.issue.description}</p>
-				<button onClick={deleteIssue}>Issue has been resolved</button>
-				{props.deleteIssueError && <p>Issue could not be deleted</p>}
-			</div>
-		</div>
+		<StyledCard>
+			<h3>Issue: {props.issue.title}</h3>
+			<p>Upvotes: {props.issue.upvotes}</p>
+			<p>Location: {props.issue.location}</p>
+			<p>Description: {props.issue.description}</p>
+			<LocationButton onClick={deleteIssue}>
+				Issue has been resolved
+			</LocationButton>
+			{props.deleteIssueError && <p>Issue could not be deleted</p>}
+		</StyledCard>
 	);
 };
 
