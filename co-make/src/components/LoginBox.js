@@ -99,7 +99,7 @@ function LoginBox(props) {
 								});
 						}}
 					>
-						{({ isSubmitting }) => (
+						{({ values, isSubmitting }) => (
 							<Form id='loginForm'>
 								<Field
 									type='text'
@@ -114,9 +114,11 @@ function LoginBox(props) {
 								<button type='submit' disabled={isSubmitting}>
 									Submit
 								</button>
+								<pre>{JSON.stringify(values, null, 2)}</pre>
 							</Form>
 						)}
 					</Formik>
+					
 				</div>
 				<Router>
 					<Switch>
