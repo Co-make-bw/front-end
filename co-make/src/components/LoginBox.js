@@ -58,6 +58,7 @@ function LoginBox(props) {
 								.then(res => {
 
 									const myData = [];
+									console.log("3-6 myData: ", myData);
 									res.data.forEach(({id, fname, lname, username, password, email }) => {
 										myData.push({ 
 											id: `${id}`,
