@@ -1,7 +1,12 @@
-import { REGISTER_ERROR, RESET_ERROR } from '../actions/onboardingActions';
+import {
+	REGISTER_ERROR,
+	LOGIN_ERROR,
+	RESET_ERROR
+} from '../actions/onboardingActions';
 
 const initialState = {
-	registerError: false
+	registerError: false,
+	loginError: false
 };
 
 export const onboardingReducer = (state = initialState, action) => {
@@ -11,9 +16,15 @@ export const onboardingReducer = (state = initialState, action) => {
 				...state,
 				registerError: true
 			};
+		case LOGIN_ERROR:
+			return {
+				...state,
+				loginError: true
+			};
 		case RESET_ERROR:
 			return {
-				registerError: false
+				registerError: false,
+				loginError: false
 			};
 		default:
 			return state;

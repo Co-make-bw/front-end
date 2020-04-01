@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Form, Field } from 'formik';
-
-// GLOBAL STYLES
 
 // NAVBAR STYLES
 export const StyledNav = styled.nav`
@@ -42,22 +39,6 @@ export const NavLink = styled(Link)`
 `;
 
 // FORM STYLES
-export const StyledFormik = styled(Form)`
-	width: 300px;
-	margin-top: 2rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-`;
-export const StyledField = styled(Field)`
-	width: 100%;
-	padding: 0.5rem;
-	margin-top: 2rem;
-	border: none;
-	border-bottom: 1px solid green;
-	color: black;
-`;
 export const StyledButton = styled.button`
 	width: 100%;
 	padding: 0.5rem 1.5rem;
@@ -78,6 +59,14 @@ export const StyledButton = styled.button`
 export const StyledForm = styled.form`
 	width: 300px;
 	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+`;
+export const LoginRegister = styled.form`
+	width: 300px;
+	margin: 2rem auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -110,6 +99,36 @@ export const StyledError = styled.p`
 	background-color: #ff4a48;
 	font-size: 1rem;
 	border-radius: 5px;
+`;
+export const SwitchBox = styled.div`
+	width: 300px;
+	margin-top: 10rem;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+`;
+export const SwitchActive = styled.div`
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 0.5rem;
+	width: 100px;
+	border-bottom: 1px solid green;
+
+	&:hover {
+		cursor: pointer;
+	}
+`;
+export const SwitchInactive = styled.div`
+	font-size: 1.2rem;
+	text-align: center;
+	width: 100px;
+	padding: 0.5rem;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 // PROFILE STYLES

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { StyledNav, NavLogo, NavContainer, NavLink } from '../styles';
 
 function Navbar(props) {
+	const history = useHistory();
 	const [ifToken, setIfToken] = useState(false);
 
 	useEffect(() => {
@@ -12,7 +14,7 @@ function Navbar(props) {
 		} else {
 			setIfToken(false);
 		}
-	}, []);
+	}, [history.location]);
 
 	const logOut = e => {
 		window.localStorage.clear();
@@ -27,7 +29,7 @@ function Navbar(props) {
 					{ifToken && (
 						<>
 							<NavLink to={`/dashboard/${props.user.id}`}>Dashboard</NavLink>
-							<NavLink to='/' onClick={logOut}>
+							<NavLink to='/login' onClick={logOut}>
 								Log Out
 							</NavLink>
 						</>
